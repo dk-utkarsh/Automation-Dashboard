@@ -69,7 +69,7 @@ export default function LoginPage({ onLogin }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="w-full max-w-sm relative z-10 px-4"
+        className="w-full max-w-lg relative z-10 px-4"
         style={{ perspective: 1500 }}
       >
         <motion.div
@@ -118,7 +118,7 @@ export default function LoginPage({ onLogin }) {
             </div>
 
             {/* Glass card */}
-            <div className="relative bg-black/40 backdrop-blur-xl rounded-2xl p-6 border border-white/[0.05] shadow-2xl overflow-hidden">
+            <div className="relative bg-black/40 backdrop-blur-xl rounded-2xl p-10 border border-white/[0.05] shadow-2xl overflow-hidden">
               {/* Inner pattern */}
               <div
                 className="absolute inset-0 opacity-[0.03]"
@@ -135,14 +135,14 @@ export default function LoginPage({ onLogin }) {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ type: "spring", duration: 0.8 }}
                 >
-                  <img src="/logo.png" alt="Dentalkart" className="w-14 h-14 rounded-full object-cover mx-auto border border-white/10" />
+                  <img src="/logo.png" alt="Dentalkart" className="w-20 h-20 rounded-full object-cover mx-auto border border-white/10" />
                 </motion.div>
 
                 <motion.h1
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80"
+                  className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80"
                 >
                   Welcome Back
                 </motion.h1>
@@ -186,7 +186,7 @@ export default function LoginPage({ onLogin }) {
                         onBlur={() => setFocusedInput(null)}
                         required
                         autoFocus
-                        className="w-full bg-white/5 border border-transparent focus:border-white/20 text-white placeholder:text-white/30 h-10 rounded-lg transition-all duration-300 pl-10 pr-3 focus:bg-white/10 outline-none text-sm"
+                        className="w-full bg-white/5 border border-transparent focus:border-white/20 text-white placeholder:text-white/30 h-12 rounded-lg transition-all duration-300 pl-10 pr-3 focus:bg-white/10 outline-none text-sm"
                       />
                     </div>
                   </motion.div>
@@ -207,7 +207,7 @@ export default function LoginPage({ onLogin }) {
                         onFocus={() => setFocusedInput("password")}
                         onBlur={() => setFocusedInput(null)}
                         required
-                        className="w-full bg-white/5 border border-transparent focus:border-white/20 text-white placeholder:text-white/30 h-10 rounded-lg transition-all duration-300 pl-10 pr-10 focus:bg-white/10 outline-none text-sm"
+                        className="w-full bg-white/5 border border-transparent focus:border-white/20 text-white placeholder:text-white/30 h-12 rounded-lg transition-all duration-300 pl-10 pr-12 focus:bg-white/10 outline-none text-sm"
                       />
                       <button
                         type="button"
@@ -233,7 +233,7 @@ export default function LoginPage({ onLogin }) {
                   className="w-full relative group/button mt-5"
                 >
                   <div className="absolute inset-0 bg-[#FF8C00]/20 rounded-lg blur-lg opacity-0 group-hover/button:opacity-70 transition-opacity duration-300" />
-                  <div className="relative overflow-hidden bg-[#FF8C00] text-white font-medium h-10 rounded-lg transition-all duration-300 flex items-center justify-center shadow-lg shadow-[#FF8C00]/30">
+                  <div className="relative overflow-hidden bg-[#FF8C00] text-white font-medium h-12 rounded-lg transition-all duration-300 flex items-center justify-center shadow-lg shadow-[#FF8C00]/30">
                     <AnimatePresence mode="wait">
                       {isLoading ? (
                         <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
