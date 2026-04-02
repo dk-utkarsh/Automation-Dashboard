@@ -5,41 +5,44 @@ export default function Navbar() {
   const isAdmin = location.pathname.startsWith("/admin");
 
   return (
-    <header className="w-full top-0 sticky z-50 bg-[#82756b] shadow-xl shadow-orange-900/5">
-      <div className="flex items-center justify-between px-6 py-3.5 max-w-[1400px] mx-auto">
-        <Link to="/" className="flex items-center gap-3">
-          <span className="text-2xl font-black italic tracking-tighter text-white uppercase">
-            Dental<span className="text-[#E28616]">kart</span>
-          </span>
-        </Link>
+    <header className="w-full top-0 sticky z-50 bg-[#001E4D] text-white shadow-md">
+      <div className="flex items-center justify-between px-6 md:px-8 py-4">
+        <div className="flex items-center gap-4">
+          <Link to="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/20 text-white font-bold">
+              D
+            </div>
+            <h1 className="text-xl font-bold tracking-tight">Dentalkart Hub</h1>
+          </Link>
+        </div>
 
         <nav className="hidden md:flex items-center gap-1">
           <Link
             to="/"
-            className={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all ${
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               !isAdmin
-                ? "bg-[#E28616] text-white shadow-lg shadow-orange-500/20"
-                : "text-white/70 hover:text-white hover:bg-white/10"
+                ? "bg-[#FF8C00] text-white shadow-lg shadow-orange-500/30"
+                : "text-white/60 hover:text-white hover:bg-white/10"
             }`}
           >
             Dashboard
           </Link>
           <Link
             to="/admin"
-            className={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all ${
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               isAdmin
-                ? "bg-[#E28616] text-white shadow-lg shadow-orange-500/20"
-                : "text-white/70 hover:text-white hover:bg-white/10"
+                ? "bg-[#FF8C00] text-white shadow-lg shadow-orange-500/30"
+                : "text-white/60 hover:text-white hover:bg-white/10"
             }`}
           >
             Admin
           </Link>
         </nav>
 
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#E28616] to-[#d47b02] flex items-center justify-center text-white font-bold text-sm border-2 border-white/20">
-            D
-          </div>
+        <div className="flex items-center gap-4">
+          <button className="p-2 text-white/70 hover:bg-white/10 rounded-full transition-colors">
+            <span className="material-symbols-outlined">notifications</span>
+          </button>
         </div>
       </div>
     </header>

@@ -14,7 +14,6 @@ export default function LoginPage({ onLogin }) {
     e.preventDefault();
     setError(null);
     setLoading(true);
-
     try {
       const { token, username: user } = await api.login(username, password);
       saveToken(token);
@@ -27,64 +26,49 @@ export default function LoginPage({ onLogin }) {
     }
   };
 
+  const inputClass = "w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-[#1A1C1E] placeholder-slate-400 focus:outline-none focus:border-[#FF8C00] focus:ring-2 focus:ring-[#FF8C00]/10 transition-all";
+
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
-      <div className="w-full max-w-sm animate-scale-in">
+      <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 rounded-2xl kinetic-gradient flex items-center justify-center mx-auto mb-4 shadow-xl shadow-orange-500/20">
-            <span className="text-white font-black text-2xl italic">D</span>
+          <div className="w-16 h-16 rounded-xl bg-[#001E4D] flex items-center justify-center mx-auto mb-4 shadow-xl">
+            <span className="text-white font-black text-2xl">D</span>
           </div>
-          <h1 className="text-2xl font-black text-[#221a13]">Admin Login</h1>
-          <p className="text-[#877363] text-sm mt-1">Sign in to manage the dashboard</p>
+          <h1 className="text-2xl font-extrabold text-[#001E4D]">Admin Login</h1>
+          <p className="text-slate-500 text-sm mt-1">Sign in to manage the dashboard</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-red-700 text-sm font-medium">
+            <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-red-700 text-sm font-medium">
               {error}
             </div>
           )}
-
           <div>
-            <label className="block text-[#544435] text-xs font-bold uppercase tracking-widest mb-1.5">Username</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-              autoFocus
-              className="w-full bg-white border border-[#dac2af]/30 rounded-xl px-4 py-3 text-[#221a13] placeholder-[#877363] focus:outline-none focus:border-[#E28616] focus:ring-2 focus:ring-[#E28616]/10 transition-all"
-              placeholder="Enter username"
-            />
+            <label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Username</label>
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required autoFocus className={inputClass} placeholder="Enter username" />
           </div>
-
           <div>
-            <label className="block text-[#544435] text-xs font-bold uppercase tracking-widest mb-1.5">Password</label>
+            <label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Password</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full bg-white border border-[#dac2af]/30 rounded-xl px-4 py-3 pr-12 text-[#221a13] placeholder-[#877363] focus:outline-none focus:border-[#E28616] focus:ring-2 focus:ring-[#E28616]/10 transition-all"
+                className={inputClass + " pr-12"}
                 placeholder="Enter password"
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#877363] hover:text-[#8c4f00] transition-colors"
-              >
-                <span className="material-symbols-outlined text-xl">
-                  {showPassword ? "visibility_off" : "visibility"}
-                </span>
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#001E4D] transition-colors">
+                <span className="material-symbols-outlined text-xl">{showPassword ? "visibility_off" : "visibility"}</span>
               </button>
             </div>
           </div>
-
           <button
             type="submit"
             disabled={loading}
-            className="w-full kinetic-gradient text-white font-black py-3 rounded-xl shadow-xl shadow-orange-500/20 hover:shadow-orange-500/30 disabled:opacity-50 transition-all active:scale-[0.98] uppercase tracking-widest text-sm"
+            className="w-full bg-[#FF8C00] hover:bg-orange-600 text-white font-bold py-3 rounded-lg shadow-lg shadow-orange-500/20 disabled:opacity-50 transition-all active:scale-[0.98] uppercase tracking-wide text-sm"
           >
             {loading ? "Signing in..." : "Sign In"}
           </button>

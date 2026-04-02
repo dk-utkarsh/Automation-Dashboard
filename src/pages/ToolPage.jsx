@@ -18,34 +18,27 @@ export default function ToolPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-[#f8f6f3]">
-        <div className="w-10 h-10 border-3 border-[#E28616] border-t-transparent rounded-full animate-spin" />
+      <div className="flex items-center justify-center min-h-screen bg-[#F4F7FA]">
+        <div className="w-10 h-10 border-3 border-[#FF8C00] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="text-center py-20 bg-[#f8f6f3] min-h-screen">
+      <div className="text-center py-20 bg-[#F4F7FA] min-h-screen">
         <p className="text-red-600">{error}</p>
-        <Link to={`/department/${slug}`} className="text-[#8c4f00] mt-4 inline-block hover:underline font-bold">
-          Back to Department
-        </Link>
+        <Link to={`/department/${slug}`} className="text-[#001E4D] mt-4 inline-block hover:underline font-bold">Back</Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f6f3]">
-      {/* Tool top bar */}
-      <header className="bg-[#82756b] px-6 py-3 flex items-center justify-between shadow-lg shadow-orange-900/5">
+    <div className="min-h-screen bg-[#F4F7FA]">
+      <header className="bg-[#001E4D] px-6 md:px-8 py-3 flex items-center justify-between shadow-md">
         <div className="flex items-center gap-4">
-          <Link
-            to={`/department/${slug}`}
-            className="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm font-bold"
-          >
-            <span className="material-symbols-outlined text-lg">arrow_back</span>
-            Back
+          <Link to={`/department/${slug}`} className="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm font-medium">
+            <span className="material-symbols-outlined text-lg">arrow_back</span> Back
           </Link>
           <div className="h-5 w-px bg-white/20" />
           <span className="text-xl">{tool.icon}</span>
@@ -55,18 +48,15 @@ export default function ToolPage() {
           </div>
           <StatusBadge status={tool.status} />
         </div>
-
         <a
           href={tool.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2 bg-[#E28616] text-white text-xs font-black uppercase tracking-widest rounded-full hover:bg-[#d47b02] transition-colors shadow-lg shadow-orange-500/20"
+          className="flex items-center gap-2 px-4 py-2 bg-[#FF8C00] text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/30"
         >
-          Open in new tab
-          <span className="material-symbols-outlined text-sm">open_in_new</span>
+          New tab <span className="material-symbols-outlined text-sm">open_in_new</span>
         </a>
       </header>
-
       <iframe
         src={tool.url}
         title={tool.name}

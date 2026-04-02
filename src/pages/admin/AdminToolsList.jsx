@@ -8,101 +8,73 @@ export default function AdminToolsList() {
   const [department, setDepartment] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const loadDepartment = async () => {
+  const load = async () => {
     try {
-      const departments = await api.getDepartments();
-      const dept = departments.find((d) => d.id === Number(id));
-      if (!dept) throw new Error("Department not found");
-      const fullDept = await api.getDepartment(dept.slug);
-      setDepartment(fullDept);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+      const depts = await api.getDepartments();
+      const dept = depts.find(d => d.id === Number(id));
+      if (!dept) throw new Error("Not found");
+      setDepartment(await api.getDepartment(dept.slug));
+    } catch (err) { console.error(err); }
+    finally { setLoading(false); }
   };
 
-  useEffect(() => { loadDepartment(); }, [id]);
+  useEffect(() => { load(); }, [id]);
 
-  const handleDelete = async (toolId, toolName) => {
-    if (!confirm(`Delete "${toolName}"?`)) return;
-    try {
-      await api.deleteTool(toolId);
-      loadDepartment();
-    } catch (err) {
-      alert("Failed to delete: " + err.message);
-    }
+  const handleDelete = async (toolId, name) => {
+    if (!confirm(`Delete "${name}"?`)) return;
+    try { await api.deleteTool(toolId); load(); } catch (err) { alert("Failed: " + err.message); }
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[40vh]">
-        <div className="w-10 h-10 border-3 border-[#E28616] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
-  }
-
+  if (loading) return <div className="flex items-center justify-center min-h-[40vh]"><div className="w-10 h-10 border-3 border-[#FF8C00] border-t-transparent rounded-full animate-spin" /></div>;
   if (!department) return <p className="text-red-600 font-bold">Department not found</p>;
 
   return (
-    <div className="animate-fade-up">
-      <Link to="/admin" className="text-[#544435] hover:text-[#8c4f00] text-sm font-bold mb-6 inline-flex items-center gap-1">
+    <div>
+      <Link to="/admin" className="text-slate-500 hover:text-[#001E4D] text-sm font-medium mb-6 inline-flex items-center gap-1">
         <span className="material-symbols-outlined text-lg">arrow_back</span> Back
       </Link>
-
       <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
-          <span className="text-2xl">{department.icon}</span>
-          <h2 className="text-2xl font-black text-[#221a13]">{department.name} — Tools</h2>
-        </div>
-        <Link
-          to={`/admin/departments/${id}/tools/new`}
-          className="kinetic-gradient text-white text-xs font-black uppercase tracking-widest px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/20 transition-all active:scale-95"
-        >
-          + Add Tool
-        </Link>
+        <h2 className="text-2xl font-extrabold text-[#001E4D] flex items-center gap-2"><span>{department.icon}</span> {department.name} — Tools</h2>
+        <Link to={`/admin/departments/${id}/tools/new`} className="bg-[#FF8C00] hover:bg-orange-600 text-white text-sm font-bold px-5 py-2.5 rounded-lg shadow-lg shadow-orange-500/20 transition-all active:scale-95 uppercase tracking-wide">+ Add Tool</Link>
       </div>
 
-      <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[#dac2af]/10">
+      <div className="glass-card rounded-xl overflow-hidden">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-[#f0ebe4]">
-              <th className="text-left text-[#544435] text-[10px] font-black uppercase tracking-widest px-6 py-4">Tool</th>
-              <th className="text-left text-[#544435] text-[10px] font-black uppercase tracking-widest px-6 py-4">Status</th>
-              <th className="text-left text-[#544435] text-[10px] font-black uppercase tracking-widest px-6 py-4 hidden md:table-cell">URL</th>
-              <th className="text-right text-[#544435] text-[10px] font-black uppercase tracking-widest px-6 py-4">Actions</th>
+            <tr className="border-b border-slate-100">
+              <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Tool</th>
+              <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Status</th>
+              <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4 hidden md:table-cell">URL</th>
+              <th className="text-right text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {department.tools?.map((tool) => (
-              <tr key={tool.id} className="border-b border-[#f0ebe4]/50 hover:bg-[#f8f6f3] transition-colors">
+            {department.tools?.map(tool => (
+              <tr key={tool.id} className="border-b border-slate-50 hover:bg-[#F8FAFC] transition-colors">
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-3">
                     <span className="text-lg">{tool.icon}</span>
                     <div>
-                      <div className="text-[#221a13] font-bold">{tool.name}</div>
-                      <div className="text-[#877363] text-xs">{tool.description}</div>
+                      <div className="text-[#001E4D] font-bold">{tool.name}</div>
+                      <div className="text-slate-400 text-xs">{tool.description}</div>
                     </div>
                   </div>
                 </td>
                 <td className="px-6 py-4"><StatusBadge status={tool.status} /></td>
                 <td className="px-6 py-4 hidden md:table-cell">
-                  <a href={tool.url} target="_blank" rel="noopener noreferrer" className="text-[#8c4f00] hover:text-[#E28616] text-xs truncate block max-w-[200px]">{tool.url}</a>
+                  <a href={tool.url} target="_blank" rel="noopener noreferrer" className="text-[#FF8C00] hover:text-orange-600 text-xs truncate block max-w-[200px]">{tool.url}</a>
                 </td>
                 <td className="px-6 py-4 text-right">
-                  <div className="flex items-center justify-end gap-2">
-                    <Link to={`/admin/departments/${id}/tools/${tool.id}/edit`} className="text-[#544435] hover:text-[#221a13] text-xs font-bold uppercase tracking-wider">Edit</Link>
-                    <button onClick={() => handleDelete(tool.id, tool.name)} className="text-red-500 hover:text-red-700 text-xs font-bold uppercase tracking-wider">Delete</button>
+                  <div className="flex items-center justify-end gap-3">
+                    <Link to={`/admin/departments/${id}/tools/${tool.id}/edit`} className="text-slate-500 hover:text-[#001E4D] text-sm font-semibold">Edit</Link>
+                    <button onClick={() => handleDelete(tool.id, tool.name)} className="text-red-500 hover:text-red-700 text-sm font-semibold">Delete</button>
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-
-        {(!department.tools || department.tools.length === 0) && (
-          <p className="text-[#877363] text-center py-10 font-medium">No tools yet. Add one above.</p>
-        )}
+        {(!department.tools || department.tools.length === 0) && <p className="text-slate-400 text-center py-10">No tools yet. Add one above.</p>}
       </div>
     </div>
   );

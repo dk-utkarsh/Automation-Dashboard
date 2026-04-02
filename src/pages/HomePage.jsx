@@ -17,7 +17,7 @@ export default function HomePage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="w-10 h-10 border-3 border-[#E28616] border-t-transparent rounded-full animate-spin" />
+        <div className="w-10 h-10 border-3 border-[#FF8C00] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -35,30 +35,28 @@ export default function HomePage() {
   const rest = departments.slice(1);
 
   return (
-    <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-10">
+    <div className="px-8 py-10 md:px-16 max-w-[1400px] mx-auto">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 animate-fade-up">
+      <div className="flex items-end justify-between mb-8 animate-fade-up">
         <div>
-          <span className="text-xs font-black uppercase tracking-[0.3em] text-[#8c4f00]">Corporate Overview</span>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-[#221a13] mt-1">
-            Automation <span className="text-[#E28616] italic" style={{ fontFamily: "'Playfair Display', serif" }}>Hub</span>
-          </h1>
+          <p className="text-slate-500 font-semibold text-sm mb-1 uppercase tracking-wider">Corporate Overview</p>
+          <h2 className="text-4xl font-extrabold text-[#001E4D] tracking-tight">Departmental Hub</h2>
         </div>
         <div className="text-right hidden sm:block">
-          <div className="text-3xl font-black text-[#8c4f00]">{totalTools}</div>
-          <div className="text-[10px] uppercase tracking-widest text-[#544435] font-bold">Total Active Tools</div>
+          <div className="text-3xl font-black text-[#FF8C00]">{totalTools}</div>
+          <div className="text-xs uppercase tracking-widest text-slate-500 font-bold">Total Active Tools</div>
         </div>
       </div>
 
       {/* Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
         {featured && (
-          <div className="animate-fade-up stagger-1">
+          <div className="animate-fade-up stagger-1 md:col-span-2">
             <DepartmentCard department={featured} featured />
           </div>
         )}
         {rest.map((dept, i) => (
-          <div key={dept.id} className={`animate-fade-up stagger-${i + 2}`}>
+          <div key={dept.id} className={`animate-fade-up stagger-${Math.min(i + 2, 6)}`}>
             <DepartmentCard department={dept} />
           </div>
         ))}
@@ -66,24 +64,24 @@ export default function HomePage() {
 
       {departments.length === 0 && (
         <div className="text-center py-20">
-          <span className="material-symbols-outlined text-6xl text-[#dac2af]">inventory_2</span>
-          <p className="text-[#877363] mt-4">No departments yet. Add some from the admin panel.</p>
+          <span className="material-symbols-outlined text-6xl text-slate-300">inventory_2</span>
+          <p className="text-slate-500 mt-4">No departments yet. Add some from the admin panel.</p>
         </div>
       )}
 
-      {/* Enterprise Insights Footer */}
+      {/* Enterprise Insights */}
       {departments.length > 0 && (
-        <div className="mt-12 bg-[#f0ebe4] rounded-3xl p-10 flex flex-col md:flex-row gap-10 items-center animate-fade-up stagger-6">
+        <div className="bg-white rounded-2xl p-10 border border-slate-200 flex flex-col md:flex-row gap-12 items-center shadow-sm animate-fade-up stagger-6">
           <div className="flex-1">
-            <h4 className="text-2xl font-bold text-[#003366] mb-3">Enterprise Insights</h4>
-            <p className="text-[#544435] leading-relaxed max-w-lg">
+            <h4 className="text-2xl font-bold text-[#001E4D] mb-4">Enterprise Insights</h4>
+            <p className="text-slate-600 mb-8 leading-relaxed max-w-lg">
               The central interface provides a real-time snapshot of cross-departmental automation tools.
               Access any department to manage and launch tools deployed across Vercel and Streamlit.
             </p>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-sm font-bold text-[#003366]">All Systems Operational</span>
+            <div className="flex items-center gap-3">
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-xs font-bold text-[#001E4D] uppercase tracking-tight">Live Systems Operational</span>
+            </div>
           </div>
         </div>
       )}

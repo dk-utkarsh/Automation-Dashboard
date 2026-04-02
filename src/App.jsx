@@ -44,7 +44,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f6f3]">
+    <div className="min-h-screen bg-[#F4F7FA]">
       <Routes>
         <Route path="/department/:slug/tool/:toolId" element={<ToolPage />} />
 
