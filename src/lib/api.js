@@ -1,14 +1,22 @@
 const BASE = "/api";
 
-async function request(path, options = {}) {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: { "Content-Type": "application/json", ...options.headers },
-    ...options,
-  });
+function getToken() {
+  return localStorage.getItem("admin_token");
+}
 
+async function request(path, options = {}) {
+  const token = getToken();
+  const headers = { "Content-Type": "application/json", ...options.headers };
+  if (token) headers.Authorization = `Bearer ${token}`;
+
+  const res = await fetch(`${BASE}${path}`, { ...options, headers });
   const data = await res.json();
 
   if (!res.ok) {
+    if (res.status === 401 && path !== "/auth/login") {
+      localStorage.removeItem("admin_token");
+      window.dispatchEvent(new Event("auth-expired"));
+    }
     throw new Error(data.error || "Request failed");
   }
 
@@ -16,6 +24,11 @@ async function request(path, options = {}) {
 }
 
 export const api = {
+  // Auth
+  login: (username, password) => request("/auth/login", { method: "POST", body: JSON.stringify({ username, password }) }),
+  logout: () => request("/auth/logout", { method: "POST" }),
+  getMe: () => request("/auth/me"),
+
   // Public
   getDepartments: () => request("/departments"),
   getDepartment: (slug) => request(`/departments/${slug}`),
@@ -36,3 +49,15 @@ export const api = {
   // Seed
   seed: () => request("/seed", { method: "POST" }),
 };
+
+export function isLoggedIn() {
+  return Boolean(getToken());
+}
+
+export function saveToken(token) {
+  localStorage.setItem("admin_token", token);
+}
+
+export function clearToken() {
+  localStorage.removeItem("admin_token");
+}
