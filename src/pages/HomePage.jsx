@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../lib/api";
+import { GlowCard } from "../components/ui/SpotlightCard";
 
 const iconMap = {
   accounts: "account_balance",
@@ -42,7 +43,6 @@ export default function HomePage() {
 
   return (
     <div className="px-8 py-10 md:px-16">
-      {/* Header */}
       <div className="flex items-end justify-between mb-8">
         <div>
           <p className="text-slate-500 font-semibold text-sm mb-1 uppercase tracking-wider">Corporate Overview</p>
@@ -54,30 +54,27 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Department Grid — all equal cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
         {departments.map((dept) => (
-          <Link
-            key={dept.id}
-            to={`/department/${dept.slug}`}
-            className="bg-white border border-[#E2E8F0] rounded-xl p-8 shadow-sm flex flex-col justify-between hover:border-[#FF8C00]/50 hover:shadow-md transition-all group min-h-[200px]"
-          >
-            <div className="flex justify-between">
-              <span className="material-symbols-outlined text-[#0A2E4D] text-3xl transition-transform group-hover:scale-110">
-                {iconMap[dept.slug] || "folder"}
-              </span>
-              <span className="text-[#0A2E4D] font-bold text-xl">{dept.tool_count || 0}</span>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-[#0A2E4D] mt-6">{dept.name}</h3>
-              <p className="text-slate-500 text-xs mt-1 uppercase font-semibold">Total Tools</p>
-              <div className="mt-4 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-[#FF8C00] rounded-full"
-                  style={{ width: `${Math.min(((dept.tool_count || 0) / 10) * 100, 100)}%` }}
-                />
+          <Link key={dept.id} to={`/department/${dept.slug}`} className="block">
+            <GlowCard glowColor="orange" className="p-8 flex flex-col justify-between min-h-[200px] hover:-translate-y-1 transition-transform duration-300 cursor-pointer">
+              <div className="flex justify-between relative z-10">
+                <span className="material-symbols-outlined text-[#0A2E4D] text-3xl">
+                  {iconMap[dept.slug] || "folder"}
+                </span>
+                <span className="text-[#0A2E4D] font-bold text-xl">{dept.tool_count || 0}</span>
               </div>
-            </div>
+              <div className="relative z-10">
+                <h3 className="text-lg font-bold text-[#0A2E4D] mt-6">{dept.name}</h3>
+                <p className="text-slate-500 text-xs mt-1 uppercase font-semibold">Total Tools</p>
+                <div className="mt-4 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-[#FF8C00] rounded-full"
+                    style={{ width: `${Math.min(((dept.tool_count || 0) / 10) * 100, 100)}%` }}
+                  />
+                </div>
+              </div>
+            </GlowCard>
           </Link>
         ))}
       </div>
@@ -89,7 +86,6 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Enterprise Insights */}
       {departments.length > 0 && (
         <div className="bg-white rounded-2xl p-10 border border-slate-200 flex flex-col md:flex-row gap-12 items-center shadow-sm">
           <div className="flex-1">
