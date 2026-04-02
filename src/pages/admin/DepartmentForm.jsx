@@ -34,10 +34,10 @@ export default function DepartmentForm() {
 
   return (
     <div className="max-w-lg">
-      <Link to="/admin" className="text-slate-500 hover:text-[#3B8FCF] text-sm font-medium mb-6 inline-flex items-center gap-1">
+      <Link to="/admin" className="text-slate-500 hover:text-[#2B6CB0] text-sm font-medium mb-6 inline-flex items-center gap-1">
         <span className="material-symbols-outlined text-lg">arrow_back</span> Back
       </Link>
-      <h2 className="text-2xl font-extrabold text-[#3B8FCF] mb-6">{isEdit ? "Edit Department" : "New Department"}</h2>
+      <h2 className="text-2xl font-extrabold text-[#2B6CB0] mb-6">{isEdit ? "Edit Department" : "New Department"}</h2>
       <form onSubmit={handleSubmit} className="space-y-5">
         <div><label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Name *</label><input type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required className={inputClass} placeholder="e.g. Accounts" /></div>
         <div><label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Icon (emoji)</label><input type="text" value={form.icon} onChange={e => setForm({...form, icon: e.target.value})} className={inputClass} placeholder="e.g. 🏦" /></div>

@@ -33,7 +33,7 @@ export default function LoginPage({ onLogin }) {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <img src="/logo.png" alt="Dentalkart" className="w-20 h-20 rounded-full object-cover mx-auto mb-4 shadow-xl" />
-          <h1 className="text-2xl font-extrabold text-[#3B8FCF]">Admin Login</h1>
+          <h1 className="text-2xl font-extrabold text-[#2B6CB0]">Admin Login</h1>
           <p className="text-slate-500 text-sm mt-1">Sign in to manage the dashboard</p>
         </div>
 
@@ -58,7 +58,7 @@ export default function LoginPage({ onLogin }) {
                 className={inputClass + " pr-12"}
                 placeholder="Enter password"
               />
-              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#3B8FCF] transition-colors">
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#2B6CB0] transition-colors">
                 <span className="material-symbols-outlined text-xl">{showPassword ? "visibility_off" : "visibility"}</span>
               </button>
             </div>

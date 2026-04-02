@@ -28,14 +28,14 @@ export default function ToolPage() {
     return (
       <div className="text-center py-20 bg-[#F4F7FA] min-h-screen">
         <p className="text-red-600">{error}</p>
-        <Link to={`/department/${slug}`} className="text-[#3B8FCF] mt-4 inline-block hover:underline font-bold">Back</Link>
+        <Link to={`/department/${slug}`} className="text-[#2B6CB0] mt-4 inline-block hover:underline font-bold">Back</Link>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-[#F4F7FA]">
-      <header className="bg-[#3B8FCF] px-6 md:px-8 py-3 flex items-center justify-between shadow-md">
+      <header className="bg-[#2B6CB0] px-6 md:px-8 py-3 flex items-center justify-between shadow-md">
         <div className="flex items-center gap-4">
           <Link to={`/department/${slug}`} className="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm font-medium">
             <span className="material-symbols-outlined text-lg">arrow_back</span> Back

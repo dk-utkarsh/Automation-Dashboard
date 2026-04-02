@@ -53,7 +53,7 @@ export default function AdminDashboard() {
                   <div className="flex items-center gap-3">
                     <span className="text-xl">{dept.icon}</span>
                     <div>
-                      <div className="text-[#3B8FCF] font-bold">{dept.name}</div>
+                      <div className="text-[#2B6CB0] font-bold">{dept.name}</div>
                       <div className="text-slate-400 text-xs">{dept.description}</div>
                     </div>
                   </div>
@@ -62,7 +62,7 @@ export default function AdminDashboard() {
                 <td className="px-6 py-4 text-right">
                   <div className="flex items-center justify-end gap-3">
                     <Link to={`/admin/departments/${dept.id}/tools`} className="text-[#FF8C00] hover:text-orange-600 text-sm font-semibold">Tools</Link>
-                    <Link to={`/admin/departments/${dept.id}/edit`} className="text-slate-500 hover:text-[#3B8FCF] text-sm font-semibold">Edit</Link>
+                    <Link to={`/admin/departments/${dept.id}/edit`} className="text-slate-500 hover:text-[#2B6CB0] text-sm font-semibold">Edit</Link>
                     <button onClick={() => handleDelete(dept.id, dept.name)} className="text-red-500 hover:text-red-700 text-sm font-semibold">Delete</button>
                   </div>
                 </td>

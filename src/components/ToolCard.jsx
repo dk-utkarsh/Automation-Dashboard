@@ -13,7 +13,7 @@ export default function ToolCard({ tool, departmentSlug }) {
         </div>
         <div>
           <div className="flex items-center gap-3 flex-wrap">
-            <h4 className="text-base font-bold text-[#3B8FCF] group-hover:text-[#FF8C00] transition-colors">{tool.name}</h4>
+            <h4 className="text-base font-bold text-[#2B6CB0] group-hover:text-[#FF8C00] transition-colors">{tool.name}</h4>
             <StatusBadge status={tool.status} />
           </div>
           {tool.description && (
@@ -30,7 +30,7 @@ export default function ToolCard({ tool, departmentSlug }) {
           )}
         </div>
       </div>
-      <span className="px-5 py-2.5 text-[10px] font-black uppercase tracking-widest bg-[#F4F7FA] text-[#3B8FCF] hover:bg-[#FF8C00] hover:text-white rounded-lg transition-all shrink-0">
+      <span className="px-5 py-2.5 text-[10px] font-black uppercase tracking-widest bg-[#F4F7FA] text-[#2B6CB0] hover:bg-[#FF8C00] hover:text-white rounded-lg transition-all shrink-0">
         Open Tool
       </span>
     </Link>
