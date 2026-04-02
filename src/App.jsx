@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Outlet, Navigate } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import { Routes, Route, Outlet, Navigate, Link, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import DepartmentPage from "./pages/DepartmentPage";
 import ToolPage from "./pages/ToolPage";
@@ -12,11 +11,104 @@ import ToolForm from "./pages/admin/ToolForm";
 import LoginPage from "./pages/admin/LoginPage";
 import { isLoggedIn, clearToken, api } from "./lib/api";
 
-function MainLayout() {
+function Sidebar({ departments }) {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith("/admin");
+
+  const iconMap = {
+    accounts: "account_balance",
+    content: "edit_note",
+    creation: "palette",
+    waldent: "medical_services",
+    reports: "assessment",
+  };
+
+  return (
+    <aside className="h-screen w-72 fixed left-0 border-r border-slate-200 bg-white hidden md:flex flex-col py-6 z-40">
+      <div className="px-8 mb-10">
+        <h2 className="text-lg font-black text-[#001E4D]">Departments</h2>
+      </div>
+      <nav className="flex flex-col gap-y-1 flex-1">
+        {departments.map((dept) => {
+          const isActive = location.pathname === `/department/${dept.slug}`;
+          const icon = iconMap[dept.slug] || "folder";
+          return (
+            <Link
+              key={dept.id}
+              to={`/department/${dept.slug}`}
+              className={`mx-2 px-4 py-3 flex items-center gap-3 font-medium text-sm rounded-lg transition-all duration-200 ${
+                isActive
+                  ? "bg-[#FF8C00] text-white shadow-lg shadow-orange-500/20"
+                  : "text-slate-600 hover:bg-slate-100"
+              }`}
+            >
+              <span className="material-symbols-outlined">{icon}</span>
+              {dept.icon} {dept.name}
+            </Link>
+          );
+        })}
+      </nav>
+      <div className="px-6 mt-auto">
+        <Link
+          to="/admin"
+          className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+            isAdmin
+              ? "bg-[#001E4D] text-white"
+              : "text-slate-500 hover:bg-slate-100"
+          }`}
+        >
+          <span className="material-symbols-outlined">admin_panel_settings</span>
+          Admin Panel
+        </Link>
+      </div>
+    </aside>
+  );
+}
+
+function TopBar() {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith("/admin");
+
+  return (
+    <header className="w-full top-0 sticky z-30 bg-[#001E4D] text-white shadow-md flex items-center justify-between px-8 py-4">
+      <div className="flex items-center gap-4">
+        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/20 text-white font-bold">
+          D
+        </div>
+        <h1 className="text-xl font-bold tracking-tight">
+          {isAdmin ? "Admin Panel" : "Dentalkart Hub"}
+        </h1>
+      </div>
+      <div className="flex-1 max-w-xl mx-12 hidden md:block">
+        <div className="relative group">
+          <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 group-focus-within:text-[#FF8C00] transition-colors">search</span>
+          <input
+            className="w-full bg-white/10 border-none rounded-lg py-2.5 pl-12 pr-6 text-sm focus:ring-2 focus:ring-[#FF8C00]/50 transition-all font-medium placeholder:text-white/40 text-white outline-none"
+            placeholder="Search projects, departments..."
+            type="text"
+          />
+        </div>
+      </div>
+      <div className="flex items-center gap-4">
+        <button className="p-2 text-white/70 hover:bg-white/10 rounded-full transition-colors active:scale-95">
+          <span className="material-symbols-outlined">notifications</span>
+        </button>
+        <Link to="/" className="md:hidden p-2 text-white/70 hover:bg-white/10 rounded-full transition-colors">
+          <span className="material-symbols-outlined">dashboard</span>
+        </Link>
+      </div>
+    </header>
+  );
+}
+
+function MainLayout({ departments }) {
   return (
     <>
-      <Navbar />
-      <Outlet />
+      <Sidebar departments={departments} />
+      <div className="md:ml-72 min-h-screen">
+        <TopBar />
+        <Outlet />
+      </div>
     </>
   );
 }
@@ -28,6 +120,7 @@ function ProtectedRoute({ loggedIn, children }) {
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
+  const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
     const handleExpired = () => setLoggedIn(false);
@@ -35,8 +128,11 @@ export default function App() {
     return () => window.removeEventListener("auth-expired", handleExpired);
   }, []);
 
-  const handleLogin = () => setLoggedIn(true);
+  useEffect(() => {
+    api.getDepartments().then(setDepartments).catch(() => {});
+  }, []);
 
+  const handleLogin = () => setLoggedIn(true);
   const handleLogout = async () => {
     await api.logout().catch(() => {});
     clearToken();
@@ -48,7 +144,7 @@ export default function App() {
       <Routes>
         <Route path="/department/:slug/tool/:toolId" element={<ToolPage />} />
 
-        <Route element={<MainLayout />}>
+        <Route element={<MainLayout departments={departments} />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/department/:slug" element={<DepartmentPage />} />
 
@@ -70,6 +166,16 @@ export default function App() {
           </Route>
         </Route>
       </Routes>
+
+      {/* Mobile Bottom Nav */}
+      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-6 pt-3 bg-white/95 backdrop-blur-xl border-t border-slate-200 md:hidden shadow-[0_-10px_25px_-5px_rgba(0,0,0,0.1)] rounded-t-3xl">
+        <Link to="/" className="text-[#FF8C00] rounded-full p-3 active:scale-90 transition-transform">
+          <span className="material-symbols-outlined">dashboard</span>
+        </Link>
+        <Link to="/admin" className="text-slate-400 p-3 hover:text-[#001E4D] active:scale-90 transition-transform">
+          <span className="material-symbols-outlined">admin_panel_settings</span>
+        </Link>
+      </nav>
     </div>
   );
 }

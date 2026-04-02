@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { api } from "../lib/api";
 import DepartmentCard from "../components/DepartmentCard";
 
@@ -25,7 +26,7 @@ export default function HomePage() {
   if (error) {
     return (
       <div className="text-center py-20">
-        <p className="text-red-600">Failed to load departments: {error}</p>
+        <p className="text-red-600">Failed to load: {error}</p>
       </div>
     );
   }
@@ -35,31 +36,33 @@ export default function HomePage() {
   const rest = departments.slice(1);
 
   return (
-    <div className="px-8 py-10 md:px-16 max-w-[1400px] mx-auto">
-      {/* Header */}
-      <div className="flex items-end justify-between mb-8 animate-fade-up">
-        <div>
-          <p className="text-slate-500 font-semibold text-sm mb-1 uppercase tracking-wider">Corporate Overview</p>
-          <h2 className="text-4xl font-extrabold text-[#001E4D] tracking-tight">Departmental Hub</h2>
+    <div className="px-8 py-10 md:px-16">
+      {/* Hero Stats Segment */}
+      <div className="mb-12">
+        <div className="flex items-end justify-between mb-8 animate-fade-up">
+          <div>
+            <p className="text-slate-500 font-semibold text-sm mb-1 uppercase tracking-wider">Corporate Overview</p>
+            <h2 className="text-4xl font-extrabold text-[#001E4D] tracking-tight">Departmental Hub</h2>
+          </div>
+          <div className="text-right hidden sm:block">
+            <div className="text-3xl font-black text-[#FF8C00]">{totalTools}</div>
+            <div className="text-xs uppercase tracking-widest text-slate-500 font-bold">Total Active Tools</div>
+          </div>
         </div>
-        <div className="text-right hidden sm:block">
-          <div className="text-3xl font-black text-[#FF8C00]">{totalTools}</div>
-          <div className="text-xs uppercase tracking-widest text-slate-500 font-bold">Total Active Tools</div>
-        </div>
-      </div>
 
-      {/* Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
-        {featured && (
-          <div className="animate-fade-up stagger-1 md:col-span-2">
-            <DepartmentCard department={featured} featured />
-          </div>
-        )}
-        {rest.map((dept, i) => (
-          <div key={dept.id} className={`animate-fade-up stagger-${Math.min(i + 2, 6)}`}>
-            <DepartmentCard department={dept} />
-          </div>
-        ))}
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {featured && (
+            <div className="md:col-span-2 lg:col-span-2 animate-fade-up stagger-1">
+              <DepartmentCard department={featured} featured />
+            </div>
+          )}
+          {rest.map((dept, i) => (
+            <div key={dept.id} className={`animate-fade-up stagger-${Math.min(i + 2, 6)}`}>
+              <DepartmentCard department={dept} />
+            </div>
+          ))}
+        </div>
       </div>
 
       {departments.length === 0 && (
@@ -71,7 +74,7 @@ export default function HomePage() {
 
       {/* Enterprise Insights */}
       {departments.length > 0 && (
-        <div className="bg-white rounded-2xl p-10 border border-slate-200 flex flex-col md:flex-row gap-12 items-center shadow-sm animate-fade-up stagger-6">
+        <div className="mt-12 bg-white rounded-2xl p-10 border border-slate-200 flex flex-col md:flex-row gap-12 items-center shadow-sm animate-fade-up stagger-6">
           <div className="flex-1">
             <h4 className="text-2xl font-bold text-[#001E4D] mb-4">Enterprise Insights</h4>
             <p className="text-slate-600 mb-8 leading-relaxed max-w-lg">
