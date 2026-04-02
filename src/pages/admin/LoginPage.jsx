@@ -32,10 +32,8 @@ export default function LoginPage({ onLogin }) {
     <div className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 rounded-xl bg-[#001E4D] flex items-center justify-center mx-auto mb-4 shadow-xl">
-            <span className="text-white font-black text-2xl">D</span>
-          </div>
-          <h1 className="text-2xl font-extrabold text-[#001E4D]">Admin Login</h1>
+          <img src="/logo.png" alt="Dentalkart" className="w-20 h-20 rounded-full object-cover mx-auto mb-4 shadow-xl" />
+          <h1 className="text-2xl font-extrabold text-[#3B8FCF]">Admin Login</h1>
           <p className="text-slate-500 text-sm mt-1">Sign in to manage the dashboard</p>
         </div>
 
@@ -60,7 +58,7 @@ export default function LoginPage({ onLogin }) {
                 className={inputClass + " pr-12"}
                 placeholder="Enter password"
               />
-              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#001E4D] transition-colors">
+              <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#3B8FCF] transition-colors">
                 <span className="material-symbols-outlined text-xl">{showPassword ? "visibility_off" : "visibility"}</span>
               </button>
             </div>

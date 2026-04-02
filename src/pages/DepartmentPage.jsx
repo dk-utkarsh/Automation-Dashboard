@@ -29,7 +29,7 @@ export default function DepartmentPage() {
     return (
       <div className="text-center py-20">
         <p className="text-red-600">{error}</p>
-        <Link to="/" className="text-[#001E4D] mt-4 inline-block hover:underline font-bold">Back to Dashboard</Link>
+        <Link to="/" className="text-[#3B8FCF] mt-4 inline-block hover:underline font-bold">Back to Dashboard</Link>
       </div>
     );
   }
@@ -44,9 +44,9 @@ export default function DepartmentPage() {
         <div className="flex items-center gap-2 text-sm text-slate-500 mb-4">
           <Link to="/" className="hover:text-[#FF8C00] transition-colors font-medium">Hub</Link>
           <span className="material-symbols-outlined text-sm">chevron_right</span>
-          <span className="text-[#001E4D] font-semibold">{department.name}</span>
+          <span className="text-[#3B8FCF] font-semibold">{department.name}</span>
         </div>
-        <h2 className="text-4xl font-extrabold text-[#001E4D] tracking-tight flex items-center gap-3">
+        <h2 className="text-4xl font-extrabold text-[#3B8FCF] tracking-tight flex items-center gap-3">
           <span className="text-3xl">{department.icon}</span> {department.name}
         </h2>
         {department.description && (
@@ -58,7 +58,7 @@ export default function DepartmentPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
         <div className="glass-card rounded-xl p-6 animate-fade-up stagger-1">
           <p className="text-slate-500 text-xs uppercase font-semibold tracking-wider">Total Tools</p>
-          <p className="text-3xl font-black text-[#001E4D] mt-2">{totalTools}</p>
+          <p className="text-3xl font-black text-[#3B8FCF] mt-2">{totalTools}</p>
         </div>
         <div className="glass-card rounded-xl p-6 animate-fade-up stagger-2">
           <p className="text-slate-500 text-xs uppercase font-semibold tracking-wider">Live</p>
@@ -70,7 +70,7 @@ export default function DepartmentPage() {
             <div className="h-full bg-[#FF8C00] rounded-full" style={{ width: totalTools > 0 ? `${(liveCount / totalTools) * 100}%` : "0%" }} />
           </div>
         </div>
-        <div className="bg-[#001E4D] rounded-xl p-6 text-white animate-fade-up stagger-4">
+        <div className="bg-[#3B8FCF] rounded-xl p-6 text-white animate-fade-up stagger-4">
           <p className="text-white/60 text-xs uppercase font-semibold tracking-wider">Status</p>
           <p className="text-lg font-black mt-2 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" /> Operational

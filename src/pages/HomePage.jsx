@@ -46,7 +46,7 @@ export default function HomePage() {
       <div className="flex items-end justify-between mb-8">
         <div>
           <p className="text-slate-500 font-semibold text-sm mb-1 uppercase tracking-wider">Corporate Overview</p>
-          <h2 className="text-4xl font-extrabold text-[#001E4D] tracking-tight">Departmental Hub</h2>
+          <h2 className="text-4xl font-extrabold text-[#3B8FCF] tracking-tight">Departmental Hub</h2>
         </div>
         <div className="text-right hidden sm:block">
           <div className="text-3xl font-black text-[#FF8C00]">{totalTools}</div>
@@ -63,13 +63,13 @@ export default function HomePage() {
             className="bg-white border border-[#E2E8F0] rounded-xl p-8 shadow-sm flex flex-col justify-between hover:border-[#FF8C00]/50 hover:shadow-md transition-all group min-h-[200px]"
           >
             <div className="flex justify-between">
-              <span className="material-symbols-outlined text-[#001E4D] text-3xl transition-transform group-hover:scale-110">
+              <span className="material-symbols-outlined text-[#3B8FCF] text-3xl transition-transform group-hover:scale-110">
                 {iconMap[dept.slug] || "folder"}
               </span>
-              <span className="text-[#001E4D] font-bold text-xl">{dept.tool_count || 0}</span>
+              <span className="text-[#3B8FCF] font-bold text-xl">{dept.tool_count || 0}</span>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-[#001E4D] mt-6">{dept.name}</h3>
+              <h3 className="text-lg font-bold text-[#3B8FCF] mt-6">{dept.name}</h3>
               <p className="text-slate-500 text-xs mt-1 uppercase font-semibold">Total Tools</p>
               <div className="mt-4 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
                 <div
@@ -93,7 +93,7 @@ export default function HomePage() {
       {departments.length > 0 && (
         <div className="bg-white rounded-2xl p-10 border border-slate-200 flex flex-col md:flex-row gap-12 items-center shadow-sm">
           <div className="flex-1">
-            <h4 className="text-2xl font-bold text-[#001E4D] mb-4">Enterprise Insights</h4>
+            <h4 className="text-2xl font-bold text-[#3B8FCF] mb-4">Enterprise Insights</h4>
             <p className="text-slate-600 mb-8 leading-relaxed max-w-lg">
               The central interface provides a real-time snapshot of cross-departmental
               automation tools. Access any department to manage and launch tools.
@@ -102,14 +102,14 @@ export default function HomePage() {
               Generate Monthly Report
             </button>
           </div>
-          <div className="w-full md:w-1/3 relative aspect-square rounded-xl overflow-hidden shadow-2xl border-4 border-white bg-[#001E4D]">
+          <div className="w-full md:w-1/3 relative aspect-square rounded-xl overflow-hidden shadow-2xl border-4 border-white bg-[#3B8FCF]">
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="material-symbols-outlined text-white/10 text-[120px]">monitoring</span>
             </div>
             <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-lg">
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-xs font-bold text-[#001E4D] uppercase tracking-tight">Live Systems Operational</span>
+                <span className="text-xs font-bold text-[#3B8FCF] uppercase tracking-tight">Live Systems Operational</span>
               </div>
             </div>
           </div>
