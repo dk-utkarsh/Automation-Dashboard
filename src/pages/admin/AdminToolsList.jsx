@@ -30,11 +30,11 @@ export default function AdminToolsList() {
 
   return (
     <div>
-      <Link to="/admin" className="text-slate-500 hover:text-[#2B6CB0] text-sm font-medium mb-6 inline-flex items-center gap-1">
+      <Link to="/admin" className="text-slate-500 hover:text-[#1A5276] text-sm font-medium mb-6 inline-flex items-center gap-1">
         <span className="material-symbols-outlined text-lg">arrow_back</span> Back
       </Link>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-extrabold text-[#2B6CB0] flex items-center gap-2"><span>{department.icon}</span> {department.name} — Tools</h2>
+        <h2 className="text-2xl font-extrabold text-[#1A5276] flex items-center gap-2"><span>{department.icon}</span> {department.name} — Tools</h2>
         <Link to={`/admin/departments/${id}/tools/new`} className="bg-[#FF8C00] hover:bg-orange-600 text-white text-sm font-bold px-5 py-2.5 rounded-lg shadow-lg shadow-orange-500/20 transition-all active:scale-95 uppercase tracking-wide">+ Add Tool</Link>
       </div>
 
@@ -55,7 +55,7 @@ export default function AdminToolsList() {
                   <div className="flex items-center gap-3">
                     <span className="text-lg">{tool.icon}</span>
                     <div>
-                      <div className="text-[#2B6CB0] font-bold">{tool.name}</div>
+                      <div className="text-[#1A5276] font-bold">{tool.name}</div>
                       <div className="text-slate-400 text-xs">{tool.description}</div>
                     </div>
                   </div>
@@ -66,7 +66,7 @@ export default function AdminToolsList() {
                 </td>
                 <td className="px-6 py-4 text-right">
                   <div className="flex items-center justify-end gap-3">
-                    <Link to={`/admin/departments/${id}/tools/${tool.id}/edit`} className="text-slate-500 hover:text-[#2B6CB0] text-sm font-semibold">Edit</Link>
+                    <Link to={`/admin/departments/${id}/tools/${tool.id}/edit`} className="text-slate-500 hover:text-[#1A5276] text-sm font-semibold">Edit</Link>
                     <button onClick={() => handleDelete(tool.id, tool.name)} className="text-red-500 hover:text-red-700 text-sm font-semibold">Delete</button>
                   </div>
                 </td>

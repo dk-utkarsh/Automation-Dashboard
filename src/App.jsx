@@ -28,7 +28,7 @@ function Sidebar({ departments }) {
       <div className="px-6 mb-10 flex items-center gap-3">
         <img src="/logo.png" alt="Dentalkart" className="w-10 h-10 rounded-full object-cover" />
         <div>
-          <h2 className="text-base font-black text-[#2B6CB0] leading-tight">Dentalkart</h2>
+          <h2 className="text-base font-black text-[#1A5276] leading-tight">Dentalkart</h2>
           <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Automation Hub</span>
         </div>
       </div>
@@ -57,7 +57,7 @@ function Sidebar({ departments }) {
           to="/admin"
           className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
             isAdmin
-              ? "bg-[#2B6CB0] text-white"
+              ? "bg-[#1A5276] text-white"
               : "text-slate-500 hover:bg-slate-100"
           }`}
         >
@@ -74,7 +74,7 @@ function TopBar() {
   const isAdmin = location.pathname.startsWith("/admin");
 
   return (
-    <header className="w-full top-0 sticky z-30 bg-[#2B6CB0] text-white shadow-md flex items-center justify-between px-8 py-4">
+    <header className="w-full top-0 sticky z-30 bg-[#1A5276] text-white shadow-md flex items-center justify-between px-8 py-4">
       <div className="flex items-center gap-4">
         <img src="/logo.png" alt="Dentalkart" className="w-9 h-9 rounded-full object-cover border-2 border-white/20" />
         <h1 className="text-xl font-bold tracking-tight">
@@ -174,7 +174,7 @@ export default function App() {
         <Link to="/" className="text-[#FF8C00] rounded-full p-3 active:scale-90 transition-transform">
           <span className="material-symbols-outlined">dashboard</span>
         </Link>
-        <Link to="/admin" className="text-slate-400 p-3 hover:text-[#2B6CB0] active:scale-90 transition-transform">
+        <Link to="/admin" className="text-slate-400 p-3 hover:text-[#1A5276] active:scale-90 transition-transform">
           <span className="material-symbols-outlined">admin_panel_settings</span>
         </Link>
       </nav>
