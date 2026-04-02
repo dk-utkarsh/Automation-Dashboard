@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enterprise Console - Operations Projects</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-container": "#ff8c00",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#623200",
+              "on-error": "#ffffff",
+              "surface-container-highest": "#e1e3e4",
+              "inverse-surface": "#2e3132",
+              "outline-variant": "#ddc1ae",
+              "on-tertiary-fixed": "#001b3d",
+              "on-surface": "#191c1d",
+              "tertiary-fixed": "#d6e3ff",
+              "surface-container-high": "#e7e8e9",
+              "surface": "#f8f9fa",
+              "secondary": "#3a5f94",
+              "surface-container": "#edeeef",
+              "on-tertiary-container": "#003e7d",
+              "on-tertiary": "#ffffff",
+              "surface-dim": "#d9dadb",
+              "inverse-primary": "#ffb77d",
+              "error-container": "#ffdad6",
+              "background": "#f8f9fa",
+              "on-surface-variant": "#564334",
+              "primary-fixed-dim": "#ffb77d",
+              "surface-bright": "#f8f9fa",
+              "outline": "#897362",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-fixed-variant": "#6e3900",
+              "on-secondary-fixed": "#001b3c",
+              "surface-container-low": "#f3f4f5",
+              "primary-fixed": "#ffdcc3",
+              "error": "#ba1a1a",
+              "primary": "#904d00",
+              "surface-tint": "#904d00",
+              "inverse-on-surface": "#f0f1f2",
+              "on-secondary": "#ffffff",
+              "on-secondary-fixed-variant": "#1f477b",
+              "tertiary": "#005db6",
+              "secondary-fixed": "#d5e3ff",
+              "surface-variant": "#e1e3e4",
+              "on-primary-fixed": "#2f1500",
+              "tertiary-fixed-dim": "#a9c7ff",
+              "on-tertiary-fixed-variant": "#00468c",
+              "secondary-fixed-dim": "#a7c8ff",
+              "secondary-container": "#9fc2fe",
+              "on-secondary-container": "#294f83",
+              "on-background": "#191c1d",
+              "on-error-container": "#93000a",
+              "tertiary-container": "#77abff"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #904d00 0%, #ff8c00 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f3f4f5] shadow-[0_32px_64px_-12px_rgba(0,51,102,0.06)] flex justify-between items-center px-6 h-16">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center p-2 rounded-xl hover:bg-[#e1e3e4] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-slate-500">arrow_back</span>
+</button>
+<h1 class="text-lg font-black text-[#003366] uppercase tracking-wider">Enterprise Console</h1>
+</div>
+<div class="hidden md:flex gap-8">
+<a class="font-['Inter'] font-semibold tracking-tight text-slate-500 hover:text-[#ff8c00] transition-colors" href="#">Dashboard</a>
+<a class="font-['Inter'] font-semibold tracking-tight text-[#ff8c00] border-b-2 border-[#ff8c00]" href="#">Projects</a>
+<a class="font-['Inter'] font-semibold tracking-tight text-slate-500 hover:text-[#ff8c00] transition-colors" href="#">Analytics</a>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-500">search</span>
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img alt="User Profile" data-alt="close up professional headshot of a person with friendly expression in office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0Fq8_hny_zmqIPWbm02tfqsOr6yE2f48D18VQwRPtCHwT917erwJBjaGUSHlJMbnMPmefltQoB3XhFqt1A7IAAfYL88aOU4Y9tXMT3g-CZ6lTR0GFCurZK6rEASU_iE8CPn4NezB0snlTUHbOnIvNMwgVaOGN9kT0ZEvYzJr3oYZVT3H_Fxjy1xZzqWfN9ipEyMQnBvkPNULHRgjLodoKHfK-MSPro3x3mc92fFW6VdUdWdNJSGLO5-KoCbWT3TejbTayxjCFvwRU"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Breadcrumbs & Department Title -->
+<div class="mb-10">
+<span class="text-on-surface-variant font-label text-[0.6875rem] uppercase tracking-widest font-bold">Department View</span>
+<h2 class="text-[3.5rem] font-black leading-tight tracking-tighter text-on-surface mt-2">Operations</h2>
+<div class="flex items-center gap-2 mt-2 text-secondary font-medium">
+<span class="material-symbols-outlined text-sm">hub</span>
+<span>Central Hub</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-on-surface-variant">Active Projects</span>
+</div>
+</div>
+<!-- Dashboard Stats Bento -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
+<div class="col-span-1 md:col-span-2 bg-surface-container-lowest p-8 rounded-xl shadow-sm border border-[#ddc1ae]/15">
+<div class="flex flex-col h-full justify-between">
+<div>
+<p class="text-on-surface-variant text-[0.6875rem] uppercase font-bold tracking-widest">Ongoing Initiatives</p>
+<h3 class="text-4xl font-extrabold text-on-surface mt-4">12 Active</h3>
+</div>
+<div class="mt-8 flex items-center gap-2">
+<div class="h-2 flex-grow bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full w-[65%] kinetic-gradient rounded-full"></div>
+</div>
+<span class="text-xs font-bold text-primary">65% Global Progress</span>
+</div>
+</div>
+</div>
+<div class="col-span-1 bg-surface-container-low p-6 rounded-xl border border-[#ddc1ae]/10">
+<p class="text-on-surface-variant text-[0.6875rem] uppercase font-bold tracking-widest">Avg Completion</p>
+<p class="text-3xl font-black text-secondary mt-2">14.2d</p>
+<div class="mt-4 flex items-center text-error font-bold text-sm">
+<span class="material-symbols-outlined text-sm mr-1">trending_down</span>
+                    -4% vs LY
+                </div>
+</div>
+<div class="col-span-1 bg-surface-container-low p-6 rounded-xl border border-[#ddc1ae]/10">
+<p class="text-on-surface-variant text-[0.6875rem] uppercase font-bold tracking-widest">Resources</p>
+<p class="text-3xl font-black text-secondary mt-2">48 FTE</p>
+<div class="mt-4 flex items-center text-primary font-bold text-sm">
+<span class="material-symbols-outlined text-sm mr-1">person</span>
+                    Full Capacity
+                </div>
+</div>
+</div>
+<!-- Projects Grid -->
+<div class="mb-12">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h4 class="text-2xl font-bold tracking-tight">Active Operations Pipeline</h4>
+<p class="text-on-surface-variant mt-1">Real-time status of high-velocity logistics and management streams.</p>
+</div>
+<div class="hidden md:flex gap-2">
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant font-bold text-sm rounded-lg hover:bg-surface-container-highest transition-colors">Filter</button>
+<button class="px-4 py-2 kinetic-gradient text-white font-bold text-sm rounded-lg shadow-lg active:scale-95 transition-all">New Project</button>
+</div>
+</div>
+<!-- Kinetic Layout: Project Cards -->
+<div class="space-y-4">
+<!-- Project 1: In Progress -->
+<div class="group flex flex-col md:flex-row md:items-center justify-between p-6 bg-surface-container-lowest rounded-xl hover:bg-surface-container transition-all duration-300 shadow-sm">
+<div class="flex items-start gap-6">
+<div class="w-14 h-14 bg-primary-container/10 flex items-center justify-center rounded-xl text-primary-container">
+<span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<h5 class="text-lg font-extrabold text-on-surface">Global Supply Chain Re-Optimization</h5>
+<span class="px-3 py-1 bg-[#fff3e0] text-primary text-[10px] font-black uppercase tracking-widest rounded-full">In Progress</span>
+</div>
+<p class="text-on-surface-variant text-sm mt-1 max-w-lg">Restructuring the Tier-2 vendor network to reduce latency in APAC delivery routes by 18%.</p>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex -space-x-2">
+<img alt="Team 1" class="w-7 h-7 rounded-full border-2 border-white" data-alt="headshot of smiling young woman with professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIZuOr6FSFTF9egFbWm2DEeVDabhy8lMqE465q5yXKvyVrDkVeDIWWlPa4G9EmyeDi0IqSTcvHgaShtlRERCMHx-mHQjbw5510jrKI55qS-N92n_ODyzRdMCdt331bVeRQmlrSD5szCG31fhxeiaRFOoOzchwePFgB4PQTl0FiUfm8MKGONOO7B9sdIs1CAzWdr75Gk7DIFuXFZE21czNZqiMLftzzGMRjMLahMu_l_kWQNDWbv25vUedY8MMJJ2SmenAN7sUi9pKz"/>
+<img alt="Team 2" class="w-7 h-7 rounded-full border-2 border-white" data-alt="headshot of smiling man with short hair and modern glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDyYgPToI5P8hqp2IgSWz_QMTt9xXh-JUSxOKkRxK0oCPrdW8F_QNB6ImDIFNv7b7Yz1RukTrG6HVQtb21lI33bYFxkMXTnF-VYGMH8Bvdx4UrdBTKS_RgcewO7Q5SAF0dAzpSKW44lRx56p50_5PFLoW9d0qMvhwPH8c7pczP6Nsye4wUivHe4TTNBI6G6_2LzMKsfUaHykxQ587dQOKoMaPKO766xJJ-q2eiPgx3vAPSqvPtGK7mUjX1_J5pxf-Cc8076Am1TO4V"/>
+<div class="w-7 h-7 rounded-full bg-surface-container-high border-2 border-white flex items-center justify-center text-[10px] font-bold">+5</div>
+</div>
+<span class="text-on-surface-variant text-[11px] font-medium uppercase tracking-wider">Logistics Team Alpha</span>
+</div>
+</div>
+</div>
+<div class="mt-6 md:mt-0 flex items-center gap-6">
+<div class="text-right hidden lg:block">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Next Milestone</p>
+<p class="text-sm font-semibold text-secondary">Vendor Audit (Oct 24)</p>
+</div>
+<button class="px-6 py-3 border-2 border-transparent bg-secondary/10 text-secondary font-bold text-sm rounded-lg hover:bg-secondary hover:text-white active:scale-95 transition-all">View Details</button>
+</div>
+</div>
+<!-- Project 2: Completed -->
+<div class="group flex flex-col md:flex-row md:items-center justify-between p-6 bg-surface-container-lowest rounded-xl hover:bg-surface-container transition-all duration-300 shadow-sm">
+<div class="flex items-start gap-6">
+<div class="w-14 h-14 bg-secondary-container/10 flex items-center justify-center rounded-xl text-secondary">
+<span class="material-symbols-outlined text-3xl">warehouse</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<h5 class="text-lg font-extrabold text-on-surface">Warehouse Automation Phase 1</h5>
+<span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-black uppercase tracking-widest rounded-full">Completed</span>
+</div>
+<p class="text-on-surface-variant text-sm mt-1 max-w-lg">Implementation of robotic sorting units in the central fulfillment hub. 100% rollout achieved.</p>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex -space-x-2">
+<img alt="Team 1" class="w-7 h-7 rounded-full border-2 border-white" data-alt="professional woman in corporate attire smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUdT2yps0qF8HuSLZCizpmRQpUcjekMz4BQ-hBX3lz9Z4MquQgH9iu_Ih5xhC709qvOCl_lnYTvqKzBmdg1b6BKEI3KqltPejr1t_B8ZAUe8yXNYnzKb-CpzlKGEXWUGwh2Zw3LLhabiApbF2ZZmjdKJul9ouBm5BOE2eYEYCYmfC2sSDU5h6VKQFwWY_euFpzK4RGoaSkFWwAaroHEHlGGK5K5_HZKTXxxp7aZiPZb3Pnf0Ej8VvUOUVM-6HrotRFepKHvK7RpF72"/>
+<img alt="Team 2" class="w-7 h-7 rounded-full border-2 border-white" data-alt="professional man in tech casual attire smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0LSsB0tEygTXcel31Df8ksnF_JhCklRtpG1WOJUeyfe1B-p1xNaBQtkRT1SerKfipazDMRrvHfIhQgx1kqxuc6849pUbLCxYkx78YCQvOPR-os_EzEIuG9VHS9bp2mlC3LxCws3SobMZMuso9n4roK9vhnxZRKHpJQSATFZ6Qv8jRECUzV_bGQAsziBQOjfImmiUXHWTzqr9Tgva9Mbcomq6lvStI4riwzJJ1sedorUdgl3g2MDo-AKEEVPSgNeQIGyhuIn4EBMpz"/>
+</div>
+<span class="text-on-surface-variant text-[11px] font-medium uppercase tracking-wider">Engineering Guild</span>
+</div>
+</div>
+</div>
+<div class="mt-6 md:mt-0 flex items-center gap-6">
+<div class="text-right hidden lg:block">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">ROI Reported</p>
+<p class="text-sm font-semibold text-green-600">+22% Efficiency</p>
+</div>
+<button class="px-6 py-3 border-2 border-transparent bg-secondary/10 text-secondary font-bold text-sm rounded-lg hover:bg-secondary hover:text-white active:scale-95 transition-all">View Details</button>
+</div>
+</div>
+<!-- Project 3: In Progress -->
+<div class="group flex flex-col md:flex-row md:items-center justify-between p-6 bg-surface-container-lowest rounded-xl hover:bg-surface-container transition-all duration-300 shadow-sm">
+<div class="flex items-start gap-6">
+<div class="w-14 h-14 bg-primary-container/10 flex items-center justify-center rounded-xl text-primary-container">
+<span class="material-symbols-outlined text-3xl">flight_takeoff</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<h5 class="text-lg font-extrabold text-on-surface">Last-Mile Drone Delivery Pilot</h5>
+<span class="px-3 py-1 bg-[#fff3e0] text-primary text-[10px] font-black uppercase tracking-widest rounded-full">In Progress</span>
+</div>
+<p class="text-on-surface-variant text-sm mt-1 max-w-lg">Operational testing for residential drone delivery in metropolitan suburban zones.</p>
+<div class="flex items-center gap-4 mt-3">
+<div class="flex -space-x-2">
+<img alt="Team 1" class="w-7 h-7 rounded-full border-2 border-white" data-alt="man in high vis vest working in drone lab" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOzga1sjYq8ooFa9I4zeKgtO57qetl7vjxMRd5F4ESs0KG-bscwvJcHJG40ZUXZJbtUxS2Y8IX3N6tojP0wC1P9mOtMzISEtRw1DW-dnHjAQP-FCxolH6f64r0UQfvIJHLlueokU92X7oTA5lNxstyeLpwKu8o7LgWBMrgD7RGOr4yWd8T-7NK5B1OI-xQQ2GTQgSH14nsStpezv5xc_cIYGx46CTWN2-kobDIIyVZylWz8bxV8fcar1eAfS5tKxOpdknC02H2JwqA"/>
+<div class="w-7 h-7 rounded-full bg-surface-container-high border-2 border-white flex items-center justify-center text-[10px] font-bold">+12</div>
+</div>
+<span class="text-on-surface-variant text-[11px] font-medium uppercase tracking-wider">Special Ops R&amp;D</span>
+</div>
+</div>
+</div>
+<div class="mt-6 md:mt-0 flex items-center gap-6">
+<div class="text-right hidden lg:block">
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Status</p>
+<p class="text-sm font-semibold text-primary">Testing Phase</p>
+</div>
+<button class="px-6 py-3 border-2 border-transparent bg-secondary/10 text-secondary font-bold text-sm rounded-lg hover:bg-secondary hover:text-white active:scale-95 transition-all">View Details</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Informational Card -->
+<div class="mb-20 bg-secondary p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between text-white overflow-hidden relative">
+<div class="absolute right-0 top-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+<div class="relative z-10">
+<h4 class="text-xl font-black uppercase tracking-widest">Quarterly Performance Review</h4>
+<p class="text-white/70 max-w-md mt-2">Operations is currently exceeding its target KPIs for the fiscal year by 14.5% across all active projects.</p>
+</div>
+<div class="mt-6 md:mt-0 relative z-10">
+<button class="px-8 py-3 bg-white text-secondary font-black rounded-lg shadow-xl hover:bg-secondary-fixed transition-all active:scale-95">Download PDF Report</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 w-full rounded-t-2xl z-50 bg-white/85 backdrop-blur-xl border-t border-[#ddc1ae]/15 shadow-[0_-8px_32px_rgba(0,51,102,0.04)] flex justify-around items-center h-20 px-4 pb-safe">
+<div class="flex flex-col items-center justify-center text-[#564334] opacity-70">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] text-[11px] font-bold uppercase tracking-widest">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#ff8c00] bg-[#f3f4f5] rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-['Inter'] text-[11px] font-bold uppercase tracking-widest">Projects</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#564334] opacity-70">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-['Inter'] text-[11px] font-bold uppercase tracking-widest">Analytics</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#564334] opacity-70">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-['Inter'] text-[11px] font-bold uppercase tracking-widest">Profile</span>
+</div>
+</nav>
+</body></html>

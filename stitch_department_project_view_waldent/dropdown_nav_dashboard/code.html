@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Enterprise Portal | The Kinetic Anchor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#003852",
+              "on-secondary-fixed": "#2d1600",
+              "inverse-primary": "#ffb874",
+              "tertiary-fixed-dim": "#88ceff",
+              "inverse-on-surface": "#ffeee1",
+              "surface-bright": "#fff8f5",
+              "on-secondary-container": "#7a5128",
+              "surface-container-highest": "#f0dfd3",
+              "primary-fixed": "#ffdcbf",
+              "on-secondary-fixed-variant": "#643e17",
+              "background": "#fff8f5",
+              "surface-variant": "#f0dfd3",
+              "primary": "#8c4f00",
+              "surface-dim": "#e8d7cb",
+              "outline": "#877363",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#004c6d",
+              "on-background": "#221a13",
+              "on-surface-variant": "#544435",
+              "secondary": "#7f552c",
+              "error-container": "#ffdad6",
+              "secondary-fixed": "#ffdcbf",
+              "tertiary": "#006590",
+              "secondary-fixed-dim": "#f3bc89",
+              "on-primary-fixed-variant": "#6b3b00",
+              "surface-container-low": "#fff1e8",
+              "on-primary-container": "#502b00",
+              "primary-container": "#e28616",
+              "on-primary-fixed": "#2d1600",
+              "inverse-surface": "#382f26",
+              "tertiary-fixed": "#c8e6ff",
+              "on-error": "#ffffff",
+              "error": "#ba1a1a",
+              "outline-variant": "#dac2af",
+              "surface-container-high": "#f6e5d9",
+              "on-tertiary-fixed": "#001e2e",
+              "surface-tint": "#8c4f00",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "surface": "#fff8f5",
+              "on-secondary": "#ffffff",
+              "tertiary-container": "#00a6ea",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#fcebde",
+              "primary-fixed-dim": "#ffb874"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface selection:bg-primary-container selection:text-white">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky bg-[#82756b] dark:bg-slate-900 z-50">
+<div class="flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-[#e28616] cursor-pointer active:scale-95">menu</span>
+<span class="text-2xl font-black italic tracking-tighter text-white uppercase">The Kinetic Anchor</span>
+</div>
+<!-- Switch Department Dropdown-First Nav -->
+<div class="relative group hidden md:block">
+<button class="bg-primary-container text-white px-5 py-2.5 rounded-full flex items-center gap-3 font-bold text-sm tracking-wide shadow-lg shadow-orange-950/20 active:scale-95 transition-all">
+<span>Switch Department</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<!-- Dropdown Content -->
+<div class="absolute top-full left-0 mt-2 w-72 glass-panel rounded-2xl shadow-[32px_32px_64px_-12px_rgba(155,109,66,0.15)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top translate-y-2 group-hover:translate-y-0 overflow-hidden z-50">
+<div class="p-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-semibold text-xs tracking-widest uppercase hover:bg-primary-container/10 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined text-primary">medical_services</span> Waldent
+                        </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-[#d47b02] to-[#e28616] text-white font-semibold text-xs tracking-widest uppercase rounded-xl shadow-md" href="#">
+<span class="material-symbols-outlined">settings_applications</span> Operations
+                        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-semibold text-xs tracking-widest uppercase hover:bg-primary-container/10 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">local_shipping</span> Logistics
+                        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-semibold text-xs tracking-widest uppercase hover:bg-primary-container/10 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">article</span> Content
+                        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-semibold text-xs tracking-widest uppercase hover:bg-primary-container/10 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span> Supply Chain
+                        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-semibold text-xs tracking-widest uppercase hover:bg-primary-container/10 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance</span> Accounts
+                        </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant font-semibold text-xs tracking-widest uppercase hover:bg-primary-container/10 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">campaign</span> Digital Marketing
+                        </a>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border-2 border-primary-container p-0.5 cursor-pointer">
+<img alt="User profile photo" class="w-full h-full rounded-full object-cover" data-alt="close up professional headshot of a senior executive woman with a confident smile in a modern corporate setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkNsWYobh0EHAHxTnP9JbEtz-sGkIeIoQ-hRxubhAMyZ7JD4YpTn4lmOaujztT4sWHAAIEmamGiR41Kjp6BSWYofG0dg1BOBEBOpuZLktoOV3k4hEEF-OmMQ9SB-c-p0-L8nSTuhA-lsAaWjCjKKlQe6AsdAQvlMO2Qou19Vx3s0Yf2lawIX2LTeTBwvbIT1oSWULj0jiHH1f1q864CAfhGhobEsFYPznAsB6EVBil9sl7T803CS18coAfeizWXmy56K2DislGjy2I"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex min-h-screen bg-[#f3f4f5]">
+<!-- Sidebar Shell (NavigationDrawer Logic) -->
+<aside class="hidden lg:flex flex-col w-72 bg-[#f3f4f5] border-r-0 shadow-[32px_0_64px_-12px_rgba(155,109,66,0.08)] z-40 fixed h-[calc(100vh-72px)] top-[72px]">
+<div class="p-6">
+<div class="flex flex-col mb-8">
+<span class="text-xl font-bold text-slate-900">Enterprise Portal</span>
+<span class="text-[10px] uppercase font-bold tracking-[0.2em] text-secondary/60">Department Overview</span>
+</div>
+<nav class="space-y-2">
+<div class="group flex items-center px-4 py-3 bg-gradient-to-r from-[#d47b02] to-[#e28616] text-white rounded-r-full my-1 cursor-pointer">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="text-sm font-semibold uppercase tracking-widest">Dashboard</span>
+</div>
+<div class="group flex items-center px-4 py-3 text-slate-600 hover:bg-[#e1e3e4] rounded-r-full transition-transform hover:translate-x-1 cursor-pointer">
+<span class="material-symbols-outlined mr-3">analytics</span>
+<span class="text-sm font-semibold uppercase tracking-widest">Analytics</span>
+</div>
+<div class="group flex items-center px-4 py-3 text-slate-600 hover:bg-[#e1e3e4] rounded-r-full transition-transform hover:translate-x-1 cursor-pointer">
+<span class="material-symbols-outlined mr-3">assessment</span>
+<span class="text-sm font-semibold uppercase tracking-widest">Reports</span>
+</div>
+<div class="group flex items-center px-4 py-3 text-slate-600 hover:bg-[#e1e3e4] rounded-r-full transition-transform hover:translate-x-1 cursor-pointer">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="text-sm font-semibold uppercase tracking-widest">Settings</span>
+</div>
+</nav>
+</div>
+<div class="mt-auto p-6">
+<div class="bg-surface-container-highest p-4 rounded-2xl">
+<div class="text-[10px] font-black uppercase tracking-tighter text-primary mb-1">System Status</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="text-xs font-bold text-slate-700">Operational</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<section class="flex-1 lg:ml-72 p-6 md:p-10 space-y-8">
+<!-- Header Section with Kinetic Tension -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-1">
+<span class="text-xs font-black uppercase tracking-[0.3em] text-primary">Live Operations</span>
+<h1 class="text-5xl md:text-6xl font-black tracking-tighter text-slate-900">
+                        Operational <span class="text-primary italic">Intelligence.</span>
+</h1>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-3 text-sm font-bold bg-white text-secondary rounded-full shadow-sm hover:bg-slate-50 active:scale-95 transition-all">Export Data</button>
+<button class="px-6 py-3 text-sm font-bold bg-gradient-to-br from-primary to-primary-container text-white rounded-full shadow-xl shadow-orange-500/20 active:scale-95 transition-all">Configure Flows</button>
+</div>
+</div>
+<!-- Bento Grid Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="md:col-span-2 bg-surface-container-lowest p-8 rounded-3xl shadow-sm border-0 relative overflow-hidden group">
+<div class="relative z-10">
+<span class="text-[10px] font-black uppercase tracking-widest text-secondary/50">Efficiency Index</span>
+<div class="text-6xl font-black text-slate-900 mt-2">94.2<span class="text-2xl text-primary">%</span></div>
+<p class="text-sm text-slate-500 mt-4 max-w-xs">Global operations are currently running 12% above projected Q3 targets.</p>
+<div class="mt-8 flex gap-2">
+<span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-full uppercase tracking-tighter">+4.1% MoM</span>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-9xl text-slate-50 opacity-10 group-hover:scale-110 transition-transform">bolt</span>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-sm flex flex-col justify-between">
+<span class="material-symbols-outlined text-primary text-3xl">hub</span>
+<div>
+<div class="text-3xl font-black text-slate-900">24</div>
+<div class="text-[10px] font-bold uppercase tracking-widest text-secondary/60">Active Hubs</div>
+</div>
+</div>
+<div class="bg-primary text-white p-8 rounded-3xl shadow-xl shadow-orange-950/10 flex flex-col justify-between">
+<span class="material-symbols-outlined text-white/50 text-3xl">timer</span>
+<div>
+<div class="text-3xl font-black">1.4s</div>
+<div class="text-[10px] font-bold uppercase tracking-widest text-white/70">Avg. Latency</div>
+</div>
+</div>
+</div>
+<!-- Active Projects Section (List without borders) -->
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-slate-900">Active Priority Projects</h3>
+<a class="text-xs font-black uppercase tracking-widest text-primary hover:underline underline-offset-4" href="#">View All Trackers</a>
+</div>
+<div class="space-y-4">
+<!-- Project Item 1 -->
+<div class="bg-white p-6 rounded-3xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-slate-50/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-6">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">package_2</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900">Project: Velocity-X</h4>
+<p class="text-xs text-slate-500">Logistics optimization for Northern territories</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden md:block">
+<div class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Progress</div>
+<div class="w-32 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="w-3/4 h-full bg-primary rounded-full relative shadow-[0_0_8px_rgba(226,134,22,0.4)]"></div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-[10px] font-black uppercase tracking-widest bg-surface-container-low text-secondary hover:bg-primary-container hover:text-white rounded-xl transition-all">Dashboard</button>
+<button class="px-4 py-2 text-[10px] font-black uppercase tracking-widest bg-surface-container-low text-secondary hover:bg-primary-container hover:text-white rounded-xl transition-all">Audit</button>
+</div>
+</div>
+</div>
+<!-- Project Item 2 -->
+<div class="bg-white p-6 rounded-3xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-slate-50/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-6">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900">Project: Anchor Core</h4>
+<p class="text-xs text-slate-500">Security infrastructure reinforcement protocol</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden md:block">
+<div class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Progress</div>
+<div class="w-32 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="w-1/2 h-full bg-primary rounded-full relative shadow-[0_0_8px_rgba(226,134,22,0.4)]"></div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-[10px] font-black uppercase tracking-widest bg-surface-container-low text-secondary hover:bg-primary-container hover:text-white rounded-xl transition-all">Dashboard</button>
+<button class="px-4 py-2 text-[10px] font-black uppercase tracking-widest bg-surface-container-low text-secondary hover:bg-primary-container hover:text-white rounded-xl transition-all">Audit</button>
+</div>
+</div>
+</div>
+<!-- Project Item 3 -->
+<div class="bg-white p-6 rounded-3xl flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-slate-50/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-6">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">cloud_sync</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900">Project: Skyward Sync</h4>
+<p class="text-xs text-slate-500">Real-time supply chain data orchestration</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden md:block">
+<div class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Progress</div>
+<div class="w-32 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="w-full h-full bg-primary rounded-full relative shadow-[0_0_8px_rgba(226,134,22,0.4)]"></div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-[10px] font-black uppercase tracking-widest bg-surface-container-low text-secondary hover:bg-primary-container hover:text-white rounded-xl transition-all">Dashboard</button>
+<button class="px-4 py-2 text-[10px] font-black uppercase tracking-widest bg-surface-container-low text-secondary hover:bg-primary-container hover:text-white rounded-xl transition-all">Audit</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Departmental News / Editorial Card -->
+<div class="bg-slate-900 rounded-[2.5rem] p-1 md:p-2 overflow-hidden">
+<div class="relative min-h-[300px] rounded-[2rem] overflow-hidden group">
+<img alt="Corporate headquarters" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700" data-alt="ultra modern architecture building with geometric glass panels reflecting sunset colors and sharp steel lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx3YtBYcAs--0_vjElJv21cN7mYAApjaZ8u_-NJC719vlr8mZTcZin3ZxCjH-MpBUt3Tf1TfZQcQUc1Zcm9vQ9W8vmaERqsiAxYf5lJ3jbZLxIRRXoSLn8USmFOHjNO8cH27W5uWEfEpmrWpbLm-z-STXohG4PK-QRAITdFIGt58gvwRh4NSjhQkC9u7DqJWMlIY0oEYi8ubMlIs3eaL_vE9eBSwNLrVG_7uwB3i1TsGSosEMEdBHCmAf7QNSA35-VG1LapBVXr6ef"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+<div class="relative h-full flex flex-col justify-end p-8 md:p-12 space-y-4">
+<span class="inline-block px-4 py-1 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded-full w-max">Announcement</span>
+<h2 class="text-3xl md:text-5xl font-black text-white leading-tight max-w-2xl">Expansion into Global Digital Markets set for Q4 2024.</h2>
+<button class="flex items-center gap-2 text-white font-bold text-sm group-hover:text-primary transition-colors">
+                            Read the Strategic Memo <span class="material-symbols-outlined">arrow_right_alt</span>
+</button>
+</div>
+</div>
+</div>
+<div class="h-20 lg:hidden"></div> <!-- Spacer for mobile nav -->
+</section>
+</main>
+<!-- BottomNavBar for Mobile -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-white/85 backdrop-blur-xl flex justify-around items-center px-6 pb-6 pt-3 shadow-[0_-8px_32px_rgba(155,109,66,0.06)] rounded-t-3xl">
+<div class="flex flex-col items-center justify-center bg-[#d47b02] text-white rounded-2xl p-2 shadow-lg shadow-orange-500/20 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-wider">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 p-2 hover:text-[#e28616] transition-all active:scale-90">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-wider">Analytics</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 p-2 hover:text-[#e28616] transition-all active:scale-90">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-wider">Reports</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 p-2 hover:text-[#e28616] transition-all active:scale-90">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-wider">Settings</span>
+</div>
+</nav>
+</body></html>

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { api } from "../lib/api";
 import StatusBadge from "../components/StatusBadge";
-import IframeViewer from "../components/IframeViewer";
 
 export default function ToolPage() {
   const { slug, toolId } = useParams();
@@ -19,17 +18,17 @@ export default function ToolPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+      <div className="flex items-center justify-center min-h-screen bg-[#f8f6f3]">
+        <div className="w-10 h-10 border-3 border-[#E28616] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="text-center py-20">
-        <p className="text-red-400">{error}</p>
-        <Link to={`/department/${slug}`} className="text-indigo-400 mt-4 inline-block hover:underline">
+      <div className="text-center py-20 bg-[#f8f6f3] min-h-screen">
+        <p className="text-red-600">{error}</p>
+        <Link to={`/department/${slug}`} className="text-[#8c4f00] mt-4 inline-block hover:underline font-bold">
           Back to Department
         </Link>
       </div>
@@ -37,20 +36,22 @@ export default function ToolPage() {
   }
 
   return (
-    <div>
-      <div className="bg-[#1a1a2e] border-b border-white/10 px-6 py-3 flex items-center justify-between">
+    <div className="min-h-screen bg-[#f8f6f3]">
+      {/* Tool top bar */}
+      <header className="bg-[#82756b] px-6 py-3 flex items-center justify-between shadow-lg shadow-orange-900/5">
         <div className="flex items-center gap-4">
           <Link
             to={`/department/${slug}`}
-            className="text-gray-400 hover:text-white transition-colors"
+            className="flex items-center gap-2 text-white/70 hover:text-white transition-colors text-sm font-bold"
           >
-            &larr; Back
+            <span className="material-symbols-outlined text-lg">arrow_back</span>
+            Back
           </Link>
-          <div className="h-5 w-px bg-white/10" />
-          <span className="text-lg">{tool.icon}</span>
+          <div className="h-5 w-px bg-white/20" />
+          <span className="text-xl">{tool.icon}</span>
           <div>
-            <h2 className="text-white font-semibold text-sm">{tool.name}</h2>
-            <span className="text-gray-500 text-xs">{tool.department_name}</span>
+            <h2 className="text-white font-bold text-sm">{tool.name}</h2>
+            <span className="text-white/50 text-xs">{tool.department_name}</span>
           </div>
           <StatusBadge status={tool.status} />
         </div>
@@ -59,13 +60,20 @@ export default function ToolPage() {
           href={tool.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-indigo-400 hover:text-indigo-300 text-sm flex items-center gap-1"
+          className="flex items-center gap-2 px-4 py-2 bg-[#E28616] text-white text-xs font-black uppercase tracking-widest rounded-full hover:bg-[#d47b02] transition-colors shadow-lg shadow-orange-500/20"
         >
-          Open in new tab &#8599;
+          Open in new tab
+          <span className="material-symbols-outlined text-sm">open_in_new</span>
         </a>
-      </div>
+      </header>
 
-      <IframeViewer url={tool.url} title={tool.name} />
+      <iframe
+        src={tool.url}
+        title={tool.name}
+        className="w-full border-0"
+        style={{ height: "calc(100vh - 56px)" }}
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+      />
     </div>
   );
 }

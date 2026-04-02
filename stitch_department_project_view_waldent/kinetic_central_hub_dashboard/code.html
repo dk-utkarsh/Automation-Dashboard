@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Executive Interface | Central Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#001E4D", // Deep Navy Blue
+              "accent": "#FF8C00", // Vibrant Orange
+              "surface": "#FFFFFF", // Clean White
+              "background": "#F4F7FA",
+              "on-surface": "#1A1C1E",
+              "on-primary": "#FFFFFF",
+              "outline": "#D1D5DB",
+              "surface-container": "#F8FAFC"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid #E2E8F0;
+        }
+        .active-nav-link {
+            background-color: #FF8C00 !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface antialiased overflow-x-hidden">
+<!-- NavigationDrawer Shell -->
+<aside class="h-screen w-72 fixed left-0 border-r border-slate-200 bg-white hidden md:flex flex-col gap-y-1 py-6 z-40 transition-all duration-200 ease-in-out">
+<div class="px-8 mb-10">
+<h2 class="text-lg font-black text-primary">Departments</h2>
+</div>
+<nav class="flex flex-col gap-y-1">
+<a class="active-nav-link rounded-lg px-4 py-3 mx-2 flex items-center gap-3 font-medium text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">business_center</span>
+            Waldent
+        </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-100 rounded-lg font-medium text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings_applications</span>
+            Operations
+        </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-100 rounded-lg font-medium text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+            Logistics
+        </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-100 rounded-lg font-medium text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+            Content
+        </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-100 rounded-lg font-medium text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+            Supply Chain
+        </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-100 rounded-lg font-medium text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+            Accounts
+        </a>
+<a class="text-slate-600 px-4 py-3 mx-2 flex items-center gap-3 hover:bg-slate-100 rounded-lg font-medium text-sm transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">campaign</span>
+            Digital Marketing
+        </a>
+</nav>
+</aside>
+<main class="md:ml-72 min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-30 bg-primary text-white shadow-md flex items-center justify-between px-8 py-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/20 overflow-hidden">
+<img alt="professional executive headshot" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBac6Fesdf3iQQZgjDld4IstVed5nNord9WIPOqERUs8c8VkSKjPblOoy_gzYVTSZZ8AifnyUC0DxxP-F7PKXMoNP7cF0SnLSamrrLgyLpxVbUJq7XpyiKDzZKd0E2uAt-ULtDMKsEiKnr9CP6yyukyXPHVi9cGyGvEvh2TRBxMjpG_BcrTobQgbccevnwzYOk152p0yVQyX0TpdCKqnNCCr5j5lU8IA5Ov66_yPLN0X_7bPVr1Vx8tMO597apAKzBBq4zmllzVN8tB"/>
+</div>
+<h1 class="text-xl font-bold font-inter tracking-tight">Executive Interface</h1>
+</div>
+<div class="flex-1 max-w-xl mx-12 hidden md:block">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 group-focus-within:text-accent transition-colors">search</span>
+<input class="w-full bg-white/10 border-none rounded-lg py-2.5 pl-12 pr-6 text-sm focus:ring-2 focus:ring-accent/50 transition-all font-medium placeholder:text-white/40 text-white" placeholder="Search projects, departments..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-white/70 hover:bg-white/10 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 md:hidden text-white/70 hover:bg-white/10 rounded-full transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</header>
+<!-- Page Content -->
+<div class="px-8 py-10 md:px-16">
+<!-- Hero Stats Segment -->
+<div class="mb-12">
+<div class="flex items-end justify-between mb-8">
+<div>
+<p class="text-slate-500 font-semibold text-sm mb-1 uppercase tracking-wider">Corporate Overview</p>
+<h2 class="text-4xl font-extrabold text-primary tracking-tight">Departmental Hub</h2>
+</div>
+<div class="text-right hidden sm:block">
+<div class="text-3xl font-black text-accent">124</div>
+<div class="text-xs uppercase tracking-widest text-slate-500 font-bold">Total Active Projects</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<!-- Waldent Card - Primary Action -->
+<div class="md:col-span-2 lg:col-span-2 relative group overflow-hidden rounded-xl bg-primary shadow-xl transition-transform hover:-translate-y-1">
+<div class="h-full w-full p-8 text-white flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="bg-accent p-3 rounded-lg shadow-lg">
+<span class="material-symbols-outlined text-3xl">business_center</span>
+</div>
+<span class="text-xs font-bold border border-white/30 px-3 py-1 rounded-full uppercase tracking-tighter">Tier 1 Strategy</span>
+</div>
+<div class="mt-12">
+<h3 class="text-3xl font-black mb-2">Waldent</h3>
+<p class="text-slate-300 text-sm max-w-xs mb-6">Principal corporate governance and executive strategy management center.</p>
+<div class="flex items-center gap-8">
+<div>
+<div class="text-2xl font-bold">28</div>
+<div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Projects</div>
+</div>
+<div class="h-10 w-px bg-white/20"></div>
+<div>
+<div class="text-2xl font-bold">94%</div>
+<div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Efficiency</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative orange accent line at bottom -->
+<div class="absolute bottom-0 left-0 w-full h-1 bg-accent"></div>
+</div>
+<!-- Operation Card -->
+<div class="glass-card rounded-xl p-8 shadow-sm flex flex-col justify-between hover:border-accent/50 transition-all group">
+<div class="flex justify-between">
+<span class="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110">settings_applications</span>
+<span class="text-primary font-bold text-xl">18</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mt-6">Operations</h3>
+<p class="text-slate-500 text-xs mt-1 uppercase font-semibold">Total Projects</p>
+<div class="mt-4 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-accent w-2/3"></div>
+</div>
+</div>
+</div>
+<!-- Logistics Card -->
+<div class="glass-card rounded-xl p-8 shadow-sm flex flex-col justify-between hover:border-accent/50 transition-all group">
+<div class="flex justify-between">
+<span class="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110">local_shipping</span>
+<span class="text-primary font-bold text-xl">12</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mt-6">Logistics</h3>
+<p class="text-slate-500 text-xs mt-1 uppercase font-semibold">Total Projects</p>
+<div class="mt-4 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-accent w-1/2"></div>
+</div>
+</div>
+</div>
+<!-- Content Card -->
+<div class="glass-card rounded-xl p-8 shadow-sm flex flex-col justify-between hover:border-accent/50 transition-all group">
+<div class="flex justify-between">
+<span class="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110">edit_note</span>
+<span class="text-primary font-bold text-xl">24</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mt-6">Content</h3>
+<p class="text-slate-500 text-xs mt-1 uppercase font-semibold">Total Projects</p>
+<div class="mt-4 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-accent w-3/4"></div>
+</div>
+</div>
+</div>
+<!-- Supply Chain Card -->
+<div class="glass-card rounded-xl p-8 shadow-sm flex flex-col justify-between hover:border-accent/50 transition-all group">
+<div class="flex justify-between">
+<span class="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110">inventory_2</span>
+<span class="text-primary font-bold text-xl">15</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mt-6">Supply Chain</h3>
+<p class="text-slate-500 text-xs mt-1 uppercase font-semibold">Total Projects</p>
+<div class="mt-4 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-accent w-2/5"></div>
+</div>
+</div>
+</div>
+<!-- Accounts Card -->
+<div class="glass-card rounded-xl p-8 shadow-sm flex flex-col justify-between hover:border-accent/50 transition-all group">
+<div class="flex justify-between">
+<span class="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110">account_balance</span>
+<span class="text-primary font-bold text-xl">9</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mt-6">Accounts</h3>
+<p class="text-slate-500 text-xs mt-1 uppercase font-semibold">Total Projects</p>
+<div class="mt-4 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-accent w-1/4"></div>
+</div>
+</div>
+</div>
+<!-- Digital Marketing Card -->
+<div class="glass-card rounded-xl p-8 shadow-sm flex flex-col justify-between hover:border-accent/50 transition-all group">
+<div class="flex justify-between">
+<span class="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110">campaign</span>
+<span class="text-primary font-bold text-xl">18</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mt-6">Digital Marketing</h3>
+<p class="text-slate-500 text-xs mt-1 uppercase font-semibold">Total Projects</p>
+<div class="mt-4 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-accent w-2/3"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Dashboard Secondary View: Recent Activity / Glass Panel -->
+<div class="mt-12 bg-white rounded-2xl p-10 border border-slate-200 flex flex-col md:flex-row gap-12 items-center shadow-sm">
+<div class="flex-1">
+<h4 class="text-2xl font-bold text-primary mb-4">Enterprise Insights</h4>
+<p class="text-slate-600 mb-8 leading-relaxed max-w-lg">
+                    The central interface provides a real-time snapshot of cross-departmental velocity. Monitoring the synergy between Logistics and Supply Chain allows for proactive bottleneck resolution.
+                </p>
+<button class="bg-accent hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-bold shadow-lg shadow-accent/20 active:scale-95 transition-all uppercase tracking-wide text-sm">
+                    Generate Monthly Report
+                </button>
+</div>
+<div class="w-full md:w-1/3 relative aspect-square rounded-xl overflow-hidden shadow-2xl border-4 border-white">
+<img alt="data visualization dashboard" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8ZnU-R8k8vyaAdtLRTTChe-WFzqJlcansfrQ_Apyvr0meinXUl9NoN48P3h7fL8s_rEY4npzX2iTNRX20Wtm2lFrhc3l7alvxn-X8WCqPtq2N86mfQv_ytzNLlTtP1N6MLN8m47_TvqKCLbSy3RzFDFaIEj6pXdQYKH76jVTMDOGCbWZL4EXQi0YPJfjTs7vkktb0Ufy-_cAfSu37xeZmQ0gsaUH_bGTiUp4MxUVFhr_kKg86JkxnjkKccnarfLmkK13IW7rFBZ9B"/>
+<div class="absolute inset-0 bg-primary/30 backdrop-blur-[1px]"></div>
+<div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-lg border border-white/20">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-bold text-primary uppercase tracking-tight">Live Systems Operational</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar for Mobile -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-6 pt-3 bg-white/95 backdrop-blur-xl border-t border-slate-200 md:hidden shadow-[0_-10px_25px_-5px_rgba(0,0,0,0.1)] rounded-t-3xl">
+<button class="text-accent rounded-full p-3 active:scale-90 transition-transform">
+<span class="material-symbols-outlined font-bold">dashboard</span>
+</button>
+<button class="text-slate-400 p-3 hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined">folder_shared</span>
+</button>
+<button class="text-slate-400 p-3 hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<button class="text-slate-400 p-3 hover:text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</nav>
+<!-- FAB Button - Focus: Create New Project -->
+<button class="fixed bottom-24 right-8 md:bottom-12 md:right-12 w-16 h-16 bg-accent text-white rounded-full shadow-2xl shadow-accent/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group">
+<span class="material-symbols-outlined text-3xl">add</span>
+<span class="absolute right-full mr-4 bg-primary text-white px-3 py-1 rounded text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lg uppercase tracking-wider">New Project</span>
+</button>
+</body></html>

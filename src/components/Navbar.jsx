@@ -5,35 +5,43 @@ export default function Navbar() {
   const isAdmin = location.pathname.startsWith("/admin");
 
   return (
-    <nav className="border-b border-white/10 bg-[#0f0f1a]/80 backdrop-blur-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <header className="w-full top-0 sticky z-50 bg-[#82756b] shadow-xl shadow-orange-900/5">
+      <div className="flex items-center justify-between px-6 py-3.5 max-w-[1400px] mx-auto">
         <Link to="/" className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
-            D
-          </div>
-          <span className="text-white font-bold text-lg">Dentalkart</span>
-          <span className="text-indigo-400 text-sm hidden sm:inline">Automation Hub</span>
+          <span className="text-2xl font-black italic tracking-tighter text-white uppercase">
+            Dental<span className="text-[#E28616]">kart</span>
+          </span>
         </Link>
 
-        <div className="flex items-center gap-4">
+        <nav className="hidden md:flex items-center gap-1">
           <Link
             to="/"
-            className={`text-sm px-3 py-1.5 rounded-lg transition-colors ${
-              !isAdmin ? "bg-white/10 text-white" : "text-gray-400 hover:text-white"
+            className={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all ${
+              !isAdmin
+                ? "bg-[#E28616] text-white shadow-lg shadow-orange-500/20"
+                : "text-white/70 hover:text-white hover:bg-white/10"
             }`}
           >
             Dashboard
           </Link>
           <Link
             to="/admin"
-            className={`text-sm px-3 py-1.5 rounded-lg transition-colors ${
-              isAdmin ? "bg-white/10 text-white" : "text-gray-400 hover:text-white"
+            className={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all ${
+              isAdmin
+                ? "bg-[#E28616] text-white shadow-lg shadow-orange-500/20"
+                : "text-white/70 hover:text-white hover:bg-white/10"
             }`}
           >
             Admin
           </Link>
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#E28616] to-[#d47b02] flex items-center justify-center text-white font-bold text-sm border-2 border-white/20">
+            D
+          </div>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }
