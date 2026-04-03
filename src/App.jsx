@@ -187,7 +187,7 @@ function TopBar({ departments, darkMode, setDarkMode }) {
 
       <div className="flex items-center gap-2">
         <Clock />
-        <LightPullThemeSwitcher onToggle={() => setDarkMode(!darkMode)} />
+        <LightPullThemeSwitcher onToggle={() => setDarkMode(!darkMode)} isDark={darkMode} />
         <Link to="/" className="md:hidden p-2 text-white/60 hover:bg-white/10 rounded-lg transition-colors">
           <span className="material-symbols-outlined text-[20px]">dashboard</span>
         </Link>
