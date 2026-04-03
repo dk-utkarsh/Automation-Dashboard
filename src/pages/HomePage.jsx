@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
-import { GlowCard } from "../components/ui/SpotlightCard";
+import { CardStack } from "../components/ui/CardStack";
 import AnimatedNumber from "../components/AnimatedNumber";
 import { SkeletonCard } from "../components/SkeletonCards";
 
@@ -13,10 +13,19 @@ const iconMap = {
   reports: "assessment",
 };
 
+const deptImages = {
+  accounts: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop",
+  content: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&h=400&fit=crop",
+  creation: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+  waldent: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&h=400&fit=crop",
+  reports: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+};
+
 export default function HomePage({ darkMode }) {
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.getDepartments()
@@ -35,7 +44,18 @@ export default function HomePage({ darkMode }) {
 
   const totalTools = departments.reduce((sum, d) => sum + (d.tool_count || 0), 0);
   const totalDepts = departments.length;
-  const liveTools = departments.reduce((sum, d) => sum + (d.tool_count || 0), 0);
+  const liveTools = totalTools;
+
+  // Build CardStack items from departments
+  const cardItems = departments.map((dept) => ({
+    id: dept.id,
+    title: `${dept.icon} ${dept.name}`,
+    description: dept.description || `${dept.tool_count || 0} automation tools`,
+    imageSrc: deptImages[dept.slug] || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop",
+    href: null,
+    slug: dept.slug,
+    tool_count: dept.tool_count || 0,
+  }));
 
   return (
     <div className="px-6 py-8 md:px-12 lg:px-16">
@@ -50,16 +70,16 @@ export default function HomePage({ darkMode }) {
       </div>
 
       {/* Quick Stats Bar */}
-      <div className={`grid grid-cols-2 md:grid-cols-4 gap-3 mb-8 animate-fade-up stagger-1`}>
-        <div className={`rounded-xl px-5 py-4 ${darkMode ? "bg-white/5" : "bg-white"} border ${darkMode ? "border-white/5" : "border-slate-100"}`}>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8 animate-fade-up stagger-1">
+        <div className={`rounded-xl px-5 py-4 ${darkMode ? "bg-white/5 border-white/5" : "bg-white border-slate-100"} border`}>
           <p className={`text-[10px] uppercase tracking-widest font-bold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Departments</p>
           <p className={`text-2xl font-black mt-1 ${darkMode ? "text-white" : "text-[#0A2E4D]"}`}><AnimatedNumber value={totalDepts} /></p>
         </div>
-        <div className={`rounded-xl px-5 py-4 ${darkMode ? "bg-white/5" : "bg-white"} border ${darkMode ? "border-white/5" : "border-slate-100"}`}>
+        <div className={`rounded-xl px-5 py-4 ${darkMode ? "bg-white/5 border-white/5" : "bg-white border-slate-100"} border`}>
           <p className={`text-[10px] uppercase tracking-widest font-bold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Total Tools</p>
-          <p className={`text-2xl font-black mt-1 text-[#FF8C00]`}><AnimatedNumber value={totalTools} /></p>
+          <p className="text-2xl font-black mt-1 text-[#FF8C00]"><AnimatedNumber value={totalTools} /></p>
         </div>
-        <div className={`rounded-xl px-5 py-4 ${darkMode ? "bg-white/5" : "bg-white"} border ${darkMode ? "border-white/5" : "border-slate-100"}`}>
+        <div className={`rounded-xl px-5 py-4 ${darkMode ? "bg-white/5 border-white/5" : "bg-white border-slate-100"} border`}>
           <p className={`text-[10px] uppercase tracking-widest font-bold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Live Tools</p>
           <p className="text-2xl font-black mt-1 text-green-500"><AnimatedNumber value={liveTools} /></p>
         </div>
@@ -71,32 +91,60 @@ export default function HomePage({ darkMode }) {
         </div>
       </div>
 
-      {/* Department Grid */}
-      {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
-          {[1,2,3,4,5].map(i => <SkeletonCard key={i} />)}
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-10">
-          {departments.map((dept, i) => (
-            <Link key={dept.id} to={`/department/${dept.slug}`} className={`block animate-fade-up stagger-${Math.min(i + 2, 8)}`}>
-              <GlowCard glowColor="orange" className={`p-7 flex flex-col justify-between min-h-[190px] premium-card cursor-pointer ${darkMode ? "!bg-[#1e293b]/60" : ""}`}>
-                <div className="flex justify-between relative z-10">
-                  <span className={`material-symbols-outlined text-2xl ${darkMode ? "text-[#FF8C00]" : "text-[#0A2E4D]"}`}>
-                    {iconMap[dept.slug] || "folder"}
-                  </span>
-                  <span className={`font-bold text-lg ${darkMode ? "text-white" : "text-[#0A2E4D]"}`}>{dept.tool_count || 0}</span>
+      {/* Department Card Stack */}
+      {!loading && departments.length > 0 && (
+        <div className="mb-10 animate-fade-up stagger-2">
+          <CardStack
+            items={cardItems}
+            initialIndex={0}
+            autoAdvance
+            intervalMs={3000}
+            pauseOnHover
+            showDots
+            cardWidth={480}
+            cardHeight={280}
+            overlap={0.5}
+            spreadDeg={40}
+            renderCard={(item, { active }) => (
+              <div
+                className="relative h-full w-full group"
+                onClick={(e) => {
+                  if (active) {
+                    e.stopPropagation();
+                    navigate(`/department/${item.slug}`);
+                  }
+                }}
+              >
+                <div className="absolute inset-0">
+                  <img src={item.imageSrc} alt={item.title} className="h-full w-full object-cover" draggable={false} />
                 </div>
-                <div className="relative z-10">
-                  <h3 className={`text-base font-bold mt-5 ${darkMode ? "text-white" : "text-[#0A2E4D]"}`}>{dept.name}</h3>
-                  <p className={`text-xs mt-1 uppercase font-semibold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Total Tools</p>
-                  <div className={`mt-3 h-1.5 w-full rounded-full overflow-hidden ${darkMode ? "bg-white/10" : "bg-slate-100"}`}>
-                    <div className="h-full bg-[#FF8C00] rounded-full transition-all duration-1000" style={{ width: `${Math.min(((dept.tool_count || 0) / 10) * 100, 100)}%` }} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="relative z-10 flex h-full flex-col justify-between p-6">
+                  <div className="flex justify-between items-start">
+                    <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${active ? "bg-[#FF8C00] text-white" : "bg-white/20 text-white/80"}`}>
+                      {item.tool_count} Tools
+                    </span>
+                    {active && (
+                      <span className="material-symbols-outlined text-white/60 group-hover:text-white transition-colors">
+                        arrow_forward
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <div className="text-2xl font-black text-white">{item.title}</div>
+                    <div className="mt-1 text-sm text-white/70">{item.description}</div>
                   </div>
                 </div>
-              </GlowCard>
-            </Link>
-          ))}
+              </div>
+            )}
+          />
+        </div>
+      )}
+
+      {/* Loading skeletons */}
+      {loading && (
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          {[1,2,3,4,5].map(i => <SkeletonCard key={i} />)}
         </div>
       )}
 
@@ -109,8 +157,8 @@ export default function HomePage({ darkMode }) {
 
       {/* Live Dentalkart.com */}
       {!loading && departments.length > 0 && (
-        <div className={`rounded-2xl border shadow-sm overflow-hidden animate-fade-up stagger-6 ${darkMode ? "bg-[#1e293b] border-[#334155]" : "bg-white border-slate-200"}`}>
-          <div className={`flex items-center justify-between px-6 py-4 border-b ${darkMode ? "border-[#334155]" : "border-slate-100"}`}>
+        <div className={`rounded-2xl border shadow-sm overflow-hidden animate-fade-up stagger-6 ${darkMode ? "bg-white/5 border-white/10" : "bg-white border-slate-200"}`}>
+          <div className={`flex items-center justify-between px-6 py-4 border-b ${darkMode ? "border-white/10" : "border-slate-100"}`}>
             <div className="flex items-center gap-3">
               <img src="/logo.png" alt="Dentalkart" className="w-8 h-8 rounded-full object-cover" />
               <div>
