@@ -48,16 +48,16 @@ function Sidebar({ departments, darkMode }) {
   const isAdmin = location.pathname.startsWith("/admin");
 
   return (
-    <aside className={`h-screen w-72 fixed left-0 border-r hidden md:flex flex-col py-6 z-40 transition-colors duration-300 ${darkMode ? "bg-[#1e293b] border-[#334155]" : "bg-white border-slate-200"}`}>
+    <aside className={`h-screen w-72 fixed left-0 border-r hidden md:flex flex-col py-6 z-40 transition-all duration-500 ${darkMode ? "bg-[#0a0f1a] border-white/10" : "bg-white border-slate-200"}`}>
       <Link to="/" className="px-6 mb-8 flex items-center gap-3 hover:opacity-80 transition-opacity">
         <img src="/logo.png" alt="Dentalkart" className="w-10 h-10 rounded-full object-cover" />
         <div>
-          <h2 className={`text-base font-black leading-tight ${darkMode ? "text-white" : "text-[#0A2E4D]"}`}>Dentalkart</h2>
-          <span className={`text-[10px] uppercase tracking-wider font-semibold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Automation Hub</span>
+          <h2 className={`text-base font-black leading-tight transition-colors duration-500 ${darkMode ? "text-white" : "text-[#0A2E4D]"}`}>Dentalkart</h2>
+          <span className={`text-[10px] uppercase tracking-wider font-semibold transition-colors duration-500 ${darkMode ? "text-slate-400" : "text-slate-400"}`}>Automation Hub</span>
         </div>
       </Link>
 
-      <div className={`px-6 mb-4 text-[10px] uppercase tracking-widest font-bold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Departments</div>
+      <div className={`px-6 mb-4 text-[10px] uppercase tracking-widest font-bold transition-colors duration-500 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Departments</div>
 
       <nav className="flex flex-col gap-y-0.5 flex-1 overflow-y-auto px-2">
         {departments.map((dept) => {
@@ -70,12 +70,12 @@ function Sidebar({ departments, darkMode }) {
               className={`px-3 py-2.5 flex items-center gap-3 font-medium text-sm rounded-lg transition-all duration-200 ${
                 isActive
                   ? "bg-[#FF8C00] text-white shadow-lg shadow-orange-500/20"
-                  : darkMode ? "text-slate-400 hover:bg-white/5" : "text-slate-600 hover:bg-slate-50"
+                  : darkMode ? "text-white/80 hover:bg-white/10 hover:text-white" : "text-slate-600 hover:bg-slate-50"
               }`}
             >
               <span className="material-symbols-outlined text-[20px]">{icon}</span>
               <span className="flex-1">{dept.name}</span>
-              <span className={`text-xs font-bold ${isActive ? "text-white/70" : darkMode ? "text-slate-600" : "text-slate-400"}`}>{dept.tool_count || 0}</span>
+              <span className={`text-xs font-bold ${isActive ? "text-white/70" : darkMode ? "text-white/40" : "text-slate-400"}`}>{dept.tool_count || 0}</span>
             </Link>
           );
         })}
@@ -86,8 +86,8 @@ function Sidebar({ departments, darkMode }) {
           to="/admin"
           className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
             isAdmin
-              ? "bg-[#0A2E4D] text-white"
-              : darkMode ? "text-slate-400 hover:bg-white/5" : "text-slate-500 hover:bg-slate-50"
+              ? darkMode ? "bg-white/10 text-white" : "bg-[#0A2E4D] text-white"
+              : darkMode ? "text-white/70 hover:bg-white/10 hover:text-white" : "text-slate-500 hover:bg-slate-50"
           }`}
         >
           <span className="material-symbols-outlined text-[20px]">admin_panel_settings</span>
