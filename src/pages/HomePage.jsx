@@ -86,29 +86,36 @@ export default function HomePage() {
         </div>
       )}
 
+      {/* Live Dentalkart.com */}
       {departments.length > 0 && (
-        <div className="bg-white rounded-2xl p-10 border border-slate-200 flex flex-col md:flex-row gap-12 items-center shadow-sm">
-          <div className="flex-1">
-            <h4 className="text-2xl font-bold text-[#0A2E4D] mb-4">Enterprise Insights</h4>
-            <p className="text-slate-600 mb-8 leading-relaxed max-w-lg">
-              The central interface provides a real-time snapshot of cross-departmental
-              automation tools. Access any department to manage and launch tools.
-            </p>
-            <button className="bg-[#FF8C00] hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-bold shadow-lg shadow-[#FF8C00]/20 active:scale-95 transition-all uppercase tracking-wide text-sm">
-              Generate Monthly Report
-            </button>
-          </div>
-          <div className="w-full md:w-1/3 relative aspect-square rounded-xl overflow-hidden shadow-2xl border-4 border-white bg-[#0A2E4D]">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="material-symbols-outlined text-white/10 text-[120px]">monitoring</span>
-            </div>
-            <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-lg">
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-xs font-bold text-[#0A2E4D] uppercase tracking-tight">Live Systems Operational</span>
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+            <div className="flex items-center gap-3">
+              <img src="/logo.png" alt="Dentalkart" className="w-8 h-8 rounded-full object-cover" />
+              <div>
+                <h4 className="text-sm font-bold text-[#0A2E4D]">Dentalkart.com</h4>
+                <div className="flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Live</span>
+                </div>
               </div>
             </div>
+            <a
+              href="https://www.dentalkart.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-[#FF8C00] hover:text-orange-600 flex items-center gap-1"
+            >
+              Open full site <span className="material-symbols-outlined text-sm">open_in_new</span>
+            </a>
           </div>
+          <iframe
+            src="https://www.dentalkart.com"
+            title="Dentalkart.com Live"
+            className="w-full border-0"
+            style={{ height: "500px" }}
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+          />
         </div>
       )}
     </div>

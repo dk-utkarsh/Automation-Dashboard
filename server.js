@@ -194,24 +194,24 @@ app.put("/api/admin/departments/reorder", requireAuth, async (req, res) => {
 // ---- ADMIN: Tools ----
 app.post("/api/admin/tools", requireAuth, async (req, res) => {
   try {
-    const { department_id, name, description, url, icon, status, tags } = req.body;
+    const { department_id, name, description, url, icon, status, tags, managed_by } = req.body;
     if (!name || !url || !department_id) return res.status(400).json({ error: "department_id, name, and url are required" });
     const maxO = await sql`SELECT COALESCE(MAX(sort_order), 0) + 1 AS next_order FROM tools WHERE department_id=${department_id}`;
     const tagsArray = Array.isArray(tags) ? tags : [];
     const result = await sql`
-      INSERT INTO tools (department_id, name, description, url, icon, status, tags, sort_order)
-      VALUES (${department_id}, ${name}, ${description||""}, ${url}, ${icon||"🔧"}, ${status||"live"}, ${tagsArray}, ${maxO[0].next_order}) RETURNING *`;
+      INSERT INTO tools (department_id, name, description, url, icon, status, tags, sort_order, managed_by)
+      VALUES (${department_id}, ${name}, ${description||""}, ${url}, ${icon||"🔧"}, ${status||"live"}, ${tagsArray}, ${maxO[0].next_order}, ${managed_by||""}) RETURNING *`;
     res.status(201).json(result[0]);
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.put("/api/admin/tools/:id", requireAuth, async (req, res) => {
   try {
-    const { name, description, url, icon, status, tags } = req.body;
+    const { name, description, url, icon, status, tags, managed_by } = req.body;
     if (!name || !url) return res.status(400).json({ error: "Name and URL are required" });
     const tagsArray = Array.isArray(tags) ? tags : [];
     const result = await sql`
-      UPDATE tools SET name=${name}, description=${description||""}, url=${url}, icon=${icon||"🔧"}, status=${status||"live"}, tags=${tagsArray}, updated_at=NOW()
+      UPDATE tools SET name=${name}, description=${description||""}, url=${url}, icon=${icon||"🔧"}, status=${status||"live"}, tags=${tagsArray}, managed_by=${managed_by||""}, updated_at=NOW()
       WHERE id=${req.params.id} RETURNING *`;
     if (result.length === 0) return res.status(404).json({ error: "Tool not found" });
     res.json(result[0]);

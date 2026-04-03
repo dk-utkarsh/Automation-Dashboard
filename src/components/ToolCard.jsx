@@ -27,6 +27,12 @@ export default function ToolCard({ tool }) {
                 ))}
               </div>
             )}
+            {tool.managed_by && (
+              <div className="flex items-center gap-1.5 mt-2 text-slate-400 text-xs">
+                <span className="material-symbols-outlined text-sm">person</span>
+                Managed by <span className="font-semibold">{tool.managed_by}</span>
+              </div>
+            )}
           </div>
         </div>
         <span className="px-5 py-2.5 text-[10px] font-black uppercase tracking-widest bg-slate-100 text-slate-400 rounded-lg shrink-0">
@@ -62,6 +68,12 @@ export default function ToolCard({ tool }) {
                   {tag}
                 </span>
               ))}
+            </div>
+          )}
+          {tool.managed_by && (
+            <div className="flex items-center gap-1.5 mt-2 text-slate-400 text-xs">
+              <span className="material-symbols-outlined text-sm">person</span>
+              Managed by <span className="font-semibold text-slate-600">{tool.managed_by}</span>
             </div>
           )}
         </div>

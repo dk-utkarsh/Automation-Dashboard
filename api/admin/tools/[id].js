@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   const sql = getSql();
 
   if (req.method === "PUT") {
-    const { name, description, url, icon, status, tags } = req.body;
+    const { name, description, url, icon, status, tags, managed_by } = req.body;
 
     if (!name || !url) {
       return res.status(400).json({ error: "Name and URL are required" });
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     try {
       const result = await sql`
         UPDATE tools
-        SET name = ${name}, description = ${description || ""}, url = ${url}, icon = ${icon || "🔧"}, status = ${status || "live"}, tags = ${tagsArray}, updated_at = NOW()
+        SET name = ${name}, description = ${description || ""}, url = ${url}, icon = ${icon || "🔧"}, status = ${status || "live"}, tags = ${tagsArray}, managed_by = ${managed_by || ""}, updated_at = NOW()
         WHERE id = ${id}
         RETURNING *
       `;

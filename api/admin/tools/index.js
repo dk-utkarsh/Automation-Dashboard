@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { department_id, name, description, url, icon, status, tags } = req.body;
+  const { department_id, name, description, url, icon, status, tags, managed_by } = req.body;
 
   if (!name || !url || !department_id) {
     return res.status(400).json({ error: "department_id, name, and url are required" });
@@ -19,8 +19,8 @@ export default async function handler(req, res) {
     const tagsArray = Array.isArray(tags) ? tags : [];
 
     const result = await sql`
-      INSERT INTO tools (department_id, name, description, url, icon, status, tags, sort_order)
-      VALUES (${department_id}, ${name}, ${description || ""}, ${url}, ${icon || "🔧"}, ${status || "live"}, ${tagsArray}, ${sortOrder})
+      INSERT INTO tools (department_id, name, description, url, icon, status, tags, sort_order, managed_by)
+      VALUES (${department_id}, ${name}, ${description || ""}, ${url}, ${icon || "🔧"}, ${status || "live"}, ${tagsArray}, ${sortOrder}, ${managed_by || ""})
       RETURNING *
     `;
 

@@ -44,6 +44,7 @@ export default function AdminToolsList() {
             <tr className="border-b border-slate-100">
               <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Tool</th>
               <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Status</th>
+              <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4 hidden lg:table-cell">Managed By</th>
               <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4 hidden md:table-cell">URL</th>
               <th className="text-right text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Actions</th>
             </tr>
@@ -61,6 +62,7 @@ export default function AdminToolsList() {
                   </div>
                 </td>
                 <td className="px-6 py-4"><StatusBadge status={tool.status} /></td>
+                <td className="px-6 py-4 hidden lg:table-cell text-slate-600 text-sm">{tool.managed_by || "—"}</td>
                 <td className="px-6 py-4 hidden md:table-cell">
                   <a href={tool.url} target="_blank" rel="noopener noreferrer" className="text-[#FF8C00] hover:text-orange-600 text-xs truncate block max-w-[200px]">{tool.url}</a>
                 </td>
