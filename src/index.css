@@ -119,19 +119,20 @@ body.dark .premium-card { background: rgba(15,23,42,0.5); backdrop-filter: blur(
 body.dark .premium-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(8,145,178,0.1); }
 
 /* Dark mode text overrides */
-body.dark .text-\[\#0A2E4D\] { color: #f1f5f9 !important; }
-body.dark .text-\[\#1A1C1E\] { color: #f1f5f9 !important; }
-body.dark .text-slate-600 { color: #cbd5e1 !important; }
-body.dark .text-slate-500 { color: #94a3b8 !important; }
-body.dark .text-slate-400 { color: #94a3b8 !important; }
+body.dark .text-\[\#0A2E4D\] { color: #ffffff !important; }
+body.dark .text-\[\#1A1C1E\] { color: #ffffff !important; }
+body.dark .text-slate-600 { color: #e2e8f0 !important; }
+body.dark .text-slate-500 { color: #ffffff !important; }
+body.dark .text-slate-400 { color: #e2e8f0 !important; }
 body.dark .hover\:text-\[\#0A2E4D\]:hover { color: #FF8C00 !important; }
 
 /* Dark mode labels and form text */
-body.dark label { color: #cbd5e1 !important; }
-body.dark p, body.dark span { transition: color 0.3s; }
+body.dark label { color: #ffffff !important; }
+body.dark p { color: #e2e8f0; }
 body.dark .text-red-700 { color: #fca5a5 !important; }
 body.dark .text-red-500 { color: #f87171 !important; }
 body.dark .text-green-600 { color: #4ade80 !important; }
+body.dark .text-green-500 { color: #4ade80 !important; }
 
 /* Dark mode backgrounds */
 body.dark .bg-white { background: rgba(15,23,42,0.6) !important; backdrop-filter: blur(12px); }
