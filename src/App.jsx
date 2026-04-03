@@ -24,13 +24,13 @@ function Sidebar({ departments }) {
 
   return (
     <aside className="h-screen w-72 fixed left-0 border-r border-slate-200 bg-white hidden md:flex flex-col py-6 z-40">
-      <div className="px-6 mb-10 flex items-center gap-3">
+      <Link to="/" className="px-6 mb-10 flex items-center gap-3 hover:opacity-80 transition-opacity">
         <img src="/logo.png" alt="Dentalkart" className="w-10 h-10 rounded-full object-cover" />
         <div>
           <h2 className="text-base font-black text-[#0A2E4D] leading-tight">Dentalkart</h2>
           <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Automation Hub</span>
         </div>
-      </div>
+      </Link>
       <nav className="flex flex-col gap-y-1 flex-1">
         {departments.map((dept) => {
           const isActive = location.pathname === `/department/${dept.slug}`;
@@ -91,12 +91,12 @@ function TopBar({ departments }) {
 
   return (
     <header className="w-full top-0 sticky z-30 bg-[#0A2E4D] text-white shadow-md flex items-center justify-between px-8 py-4">
-      <div className="flex items-center gap-4">
+      <Link to="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
         <img src="/logo.png" alt="Dentalkart" className="w-9 h-9 rounded-full object-cover border-2 border-white/20" />
         <h1 className="text-xl font-bold tracking-tight">
           {isAdmin ? "Admin Panel" : "Dentalkart Hub"}
         </h1>
-      </div>
+      </Link>
       <div className="flex-1 max-w-xl mx-12 hidden md:block relative">
         <div className="relative group">
           <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 group-focus-within:text-[#FF8C00] transition-colors">search</span>

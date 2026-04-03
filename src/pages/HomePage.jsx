@@ -46,7 +46,7 @@ export default function HomePage() {
       <div className="flex items-end justify-between mb-8">
         <div>
           <p className="text-slate-500 font-semibold text-sm mb-1 uppercase tracking-wider">Corporate Overview</p>
-          <h2 className="text-4xl font-extrabold text-[#0A2E4D] tracking-tight">Departmental Hub</h2>
+          <Link to="/" className="text-4xl font-extrabold text-[#0A2E4D] tracking-tight hover:text-[#FF8C00] transition-colors">Departmental Hub</Link>
         </div>
         <div className="text-right hidden sm:block">
           <div className="text-3xl font-black text-[#FF8C00]">{totalTools}</div>
