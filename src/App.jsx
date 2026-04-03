@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Outlet, Navigate, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Outlet, Navigate, Link, useLocation, useNavigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import DepartmentPage from "./pages/DepartmentPage";
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -68,9 +68,26 @@ function Sidebar({ departments }) {
   );
 }
 
-function TopBar() {
+function TopBar({ departments }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const isAdmin = location.pathname.startsWith("/admin");
+  const [search, setSearch] = useState("");
+  const [showResults, setShowResults] = useState(false);
+
+  const results = search.trim().length > 0
+    ? departments.filter(
+        (d) =>
+          d.name.toLowerCase().includes(search.toLowerCase()) ||
+          d.description?.toLowerCase().includes(search.toLowerCase())
+      )
+    : [];
+
+  const handleSelect = (slug) => {
+    navigate(`/department/${slug}`);
+    setSearch("");
+    setShowResults(false);
+  };
 
   return (
     <header className="w-full top-0 sticky z-30 bg-[#0A2E4D] text-white shadow-md flex items-center justify-between px-8 py-4">
@@ -80,20 +97,42 @@ function TopBar() {
           {isAdmin ? "Admin Panel" : "Dentalkart Hub"}
         </h1>
       </div>
-      <div className="flex-1 max-w-xl mx-12 hidden md:block">
+      <div className="flex-1 max-w-xl mx-12 hidden md:block relative">
         <div className="relative group">
           <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/50 group-focus-within:text-[#FF8C00] transition-colors">search</span>
           <input
             className="w-full bg-white/10 border-none rounded-lg py-2.5 pl-12 pr-6 text-sm focus:ring-2 focus:ring-[#FF8C00]/50 transition-all font-medium placeholder:text-white/40 text-white outline-none"
-            placeholder="Search projects, departments..."
+            placeholder="Search departments..."
             type="text"
+            value={search}
+            onChange={(e) => { setSearch(e.target.value); setShowResults(true); }}
+            onFocus={() => setShowResults(true)}
+            onBlur={() => setTimeout(() => setShowResults(false), 200)}
           />
         </div>
+        {showResults && search.trim().length > 0 && (
+          <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden z-50">
+            {results.length > 0 ? (
+              results.map((dept) => (
+                <button
+                  key={dept.id}
+                  onMouseDown={() => handleSelect(dept.slug)}
+                  className="w-full px-4 py-3 flex items-center gap-3 hover:bg-[#F4F7FA] transition-colors text-left"
+                >
+                  <span className="text-xl">{dept.icon}</span>
+                  <div>
+                    <div className="text-sm font-bold text-[#0A2E4D]">{dept.name}</div>
+                    <div className="text-xs text-slate-500">{dept.tool_count || 0} tools</div>
+                  </div>
+                </button>
+              ))
+            ) : (
+              <div className="px-4 py-6 text-center text-slate-400 text-sm">No departments found</div>
+            )}
+          </div>
+        )}
       </div>
       <div className="flex items-center gap-4">
-        <button className="p-2 text-white/70 hover:bg-white/10 rounded-full transition-colors active:scale-95">
-          <span className="material-symbols-outlined">notifications</span>
-        </button>
         <Link to="/" className="md:hidden p-2 text-white/70 hover:bg-white/10 rounded-full transition-colors">
           <span className="material-symbols-outlined">dashboard</span>
         </Link>
@@ -107,7 +146,7 @@ function MainLayout({ departments }) {
     <>
       <Sidebar departments={departments} />
       <div className="md:ml-72 min-h-screen">
-        <TopBar />
+        <TopBar departments={departments} />
         <Outlet />
       </div>
     </>
