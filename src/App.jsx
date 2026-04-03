@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Routes, Route, Outlet, Navigate, Link, useLocation, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
+import { GradientBackground } from "./components/ui/GradientBackground";
 import HomePage from "./pages/HomePage";
 import DepartmentPage from "./pages/DepartmentPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -247,8 +248,8 @@ export default function App() {
     toast("Logged out");
   };
 
-  return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? "bg-[#0f172a]" : "bg-[#F4F7FA]"}`}>
+  const content = (
+    <>
       <Toaster position="top-right" richColors />
 
       <Routes>
@@ -278,7 +279,7 @@ export default function App() {
       </Routes>
 
       {/* Mobile Bottom Nav */}
-      <nav className={`fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-6 pt-3 backdrop-blur-xl border-t md:hidden shadow-[0_-10px_25px_-5px_rgba(0,0,0,0.1)] rounded-t-3xl ${darkMode ? "bg-[#1e293b]/95 border-[#334155]" : "bg-white/95 border-slate-200"}`}>
+      <nav className={`fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-6 pt-3 backdrop-blur-xl border-t md:hidden shadow-[0_-10px_25px_-5px_rgba(0,0,0,0.1)] rounded-t-3xl ${darkMode ? "bg-black/60 border-white/10" : "bg-white/95 border-slate-200"}`}>
         <Link to="/" className="text-[#FF8C00] rounded-full p-3 active:scale-90 transition-transform">
           <span className="material-symbols-outlined">dashboard</span>
         </Link>
@@ -286,6 +287,12 @@ export default function App() {
           <span className="material-symbols-outlined">admin_panel_settings</span>
         </Link>
       </nav>
-    </div>
+    </>
   );
+
+  if (darkMode) {
+    return <GradientBackground>{content}</GradientBackground>;
+  }
+
+  return <div className="min-h-screen bg-[#F4F7FA]">{content}</div>;
 }
