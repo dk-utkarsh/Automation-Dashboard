@@ -82,7 +82,7 @@ export default function DepartmentPage() {
       <div className="space-y-4">
         {department.tools?.map((tool, i) => (
           <div key={tool.id} className={`animate-fade-up stagger-${Math.min(i + 4, 6)}`}>
-            <ToolCard tool={tool} departmentSlug={slug} />
+            <ToolCard tool={tool} />
           </div>
         ))}
       </div>

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Routes, Route, Outlet, Navigate, Link, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import DepartmentPage from "./pages/DepartmentPage";
-import ToolPage from "./pages/ToolPage";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import DepartmentForm from "./pages/admin/DepartmentForm";
@@ -144,8 +143,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#F4F7FA]">
       <Routes>
-        <Route path="/department/:slug/tool/:toolId" element={<ToolPage />} />
-
         <Route element={<MainLayout departments={departments} />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/department/:slug" element={<DepartmentPage />} />
