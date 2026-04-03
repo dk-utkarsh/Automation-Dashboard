@@ -123,7 +123,27 @@ app.get("/api/departments", async (req, res) => {
     const result = await sql`
       SELECT d.*, COUNT(t.id)::int AS tool_count FROM departments d
       LEFT JOIN tools t ON t.department_id = d.id GROUP BY d.id ORDER BY d.sort_order ASC, d.name ASC`;
-    res.json(result);
+    // Add has_password flag but never expose actual password
+    res.json(result.map(d => ({ ...d, has_password: Boolean(d.password && d.password.length > 0), password: undefined })));
+  } catch (err) { res.status(500).json({ error: err.message }); }
+});
+
+// Department password verification
+app.post("/api/departments/:slug/verify", async (req, res) => {
+  try {
+    const { password } = req.body;
+    const dept = await sql`SELECT id, password FROM departments WHERE slug = ${req.params.slug}`;
+    if (dept.length === 0) return res.status(404).json({ error: "Department not found" });
+
+    if (!dept[0].password || dept[0].password.length === 0) {
+      return res.json({ verified: true });
+    }
+
+    if (password === dept[0].password) {
+      return res.json({ verified: true });
+    }
+
+    return res.status(401).json({ error: "Incorrect password" });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
@@ -131,8 +151,17 @@ app.get("/api/departments/:slug", async (req, res) => {
   try {
     const dept = await sql`SELECT * FROM departments WHERE slug = ${req.params.slug}`;
     if (dept.length === 0) return res.status(404).json({ error: "Department not found" });
+
+    // If department has password, check authorization
+    if (dept[0].password && dept[0].password.length > 0) {
+      const authPass = req.headers["x-department-password"];
+      if (authPass !== dept[0].password) {
+        return res.status(401).json({ error: "Password required", has_password: true });
+      }
+    }
+
     const tools = await sql`SELECT * FROM tools WHERE department_id = ${dept[0].id} ORDER BY sort_order ASC, name ASC`;
-    res.json({ ...dept[0], tools });
+    res.json({ ...dept[0], tools, password: undefined });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
@@ -149,27 +178,27 @@ app.get("/api/tools/:id", async (req, res) => {
 // ---- ADMIN: Departments ----
 app.post("/api/admin/departments", requireAuth, async (req, res) => {
   try {
-    const { name, icon, color, description } = req.body;
+    const { name, icon, color, description, password } = req.body;
     if (!name) return res.status(400).json({ error: "Name is required" });
     const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
     const maxO = await sql`SELECT COALESCE(MAX(sort_order), 0) + 1 AS next_order FROM departments`;
     const result = await sql`
-      INSERT INTO departments (name, slug, icon, color, description, sort_order)
-      VALUES (${name}, ${slug}, ${icon || "📁"}, ${color || "#6366f1, #8b5cf6"}, ${description || ""}, ${maxO[0].next_order}) RETURNING *`;
-    res.status(201).json(result[0]);
+      INSERT INTO departments (name, slug, icon, color, description, sort_order, password)
+      VALUES (${name}, ${slug}, ${icon || "📁"}, ${color || "#6366f1, #8b5cf6"}, ${description || ""}, ${maxO[0].next_order}, ${password || ""}) RETURNING *`;
+    res.status(201).json({ ...result[0], password: undefined });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 
 app.put("/api/admin/departments/:id", requireAuth, async (req, res) => {
   try {
-    const { name, icon, color, description } = req.body;
+    const { name, icon, color, description, password } = req.body;
     if (!name) return res.status(400).json({ error: "Name is required" });
     const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
     const result = await sql`
-      UPDATE departments SET name=${name}, slug=${slug}, icon=${icon||"📁"}, color=${color||"#6366f1, #8b5cf6"}, description=${description||""}, updated_at=NOW()
+      UPDATE departments SET name=${name}, slug=${slug}, icon=${icon||"📁"}, color=${color||"#6366f1, #8b5cf6"}, description=${description||""}, password=${password !== undefined ? password : ""}, updated_at=NOW()
       WHERE id=${req.params.id} RETURNING *`;
     if (result.length === 0) return res.status(404).json({ error: "Department not found" });
-    res.json(result[0]);
+    res.json({ ...result[0], password: undefined });
   } catch (err) { res.status(500).json({ error: err.message }); }
 });
 

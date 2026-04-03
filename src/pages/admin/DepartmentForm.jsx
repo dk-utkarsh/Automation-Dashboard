@@ -6,7 +6,7 @@ export default function DepartmentForm() {
   const { id } = useParams();
   const navigate = useNavigate();
   const isEdit = Boolean(id);
-  const [form, setForm] = useState({ name: "", icon: "📁", color: "#6366f1, #8b5cf6", description: "" });
+  const [form, setForm] = useState({ name: "", icon: "📁", color: "#6366f1, #8b5cf6", description: "", password: "" });
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(isEdit);
 
@@ -14,7 +14,7 @@ export default function DepartmentForm() {
     if (!isEdit) return;
     api.getDepartments().then(depts => {
       const dept = depts.find(d => d.id === Number(id));
-      if (dept) setForm({ name: dept.name, icon: dept.icon, color: dept.color, description: dept.description || "" });
+      if (dept) setForm({ name: dept.name, icon: dept.icon, color: dept.color, description: dept.description || "", password: "" });
     }).catch(console.error).finally(() => setLoading(false));
   }, [id, isEdit]);
 
@@ -43,6 +43,14 @@ export default function DepartmentForm() {
         <div><label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Icon (emoji)</label><input type="text" value={form.icon} onChange={e => setForm({...form, icon: e.target.value})} className={inputClass} placeholder="e.g. 🏦" /></div>
         <div><label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Gradient Colors</label><input type="text" value={form.color} onChange={e => setForm({...form, color: e.target.value})} className={inputClass} placeholder="e.g. #6366f1, #8b5cf6" /></div>
         <div><label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Description</label><textarea value={form.description} onChange={e => setForm({...form, description: e.target.value})} rows={3} className={inputClass + " resize-none"} placeholder="Short description" /></div>
+        <div>
+          <label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">
+            Department Password
+            <span className="text-slate-400 normal-case tracking-normal font-normal ml-1">(leave empty for no password)</span>
+          </label>
+          <input type="text" value={form.password} onChange={e => setForm({...form, password: e.target.value})} className={inputClass} placeholder="e.g. accounts@123" />
+          {isEdit && <p className="text-xs text-slate-400 mt-1">Set a new password or leave empty to remove password protection</p>}
+        </div>
         <div className="flex gap-3 pt-2">
           <button type="submit" disabled={saving} className="bg-[#FF8C00] hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg shadow-orange-500/20 disabled:opacity-50 transition-all active:scale-95 uppercase tracking-wide text-sm">{saving ? "Saving..." : isEdit ? "Update" : "Create"}</button>
           <Link to="/admin" className="bg-white text-slate-600 font-bold px-6 py-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-all uppercase tracking-wide text-sm">Cancel</Link>

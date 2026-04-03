@@ -31,7 +31,8 @@ export const api = {
 
   // Public
   getDepartments: () => request("/departments"),
-  getDepartment: (slug) => request(`/departments/${slug}`),
+  getDepartment: (slug, deptPassword) => request(`/departments/${slug}`, deptPassword ? { headers: { "X-Department-Password": deptPassword } } : {}),
+  verifyDepartment: (slug, password) => request(`/departments/${slug}/verify`, { method: "POST", body: JSON.stringify({ password }) }),
   getTool: (id) => request(`/tools/${id}`),
 
   // Admin - Departments
