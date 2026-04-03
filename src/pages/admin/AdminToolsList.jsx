@@ -34,15 +34,15 @@ export default function AdminToolsList() {
         <span className="material-symbols-outlined text-lg">arrow_back</span> Back
       </Link>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-extrabold text-[#0A2E4D] flex items-center gap-2"><span>{department.icon}</span> {department.name} — Tools</h2>
-        <Link to={`/admin/departments/${id}/tools/new`} className="bg-[#FF8C00] hover:bg-orange-600 text-white text-sm font-bold px-5 py-2.5 rounded-lg shadow-lg shadow-orange-500/20 transition-all active:scale-95 uppercase tracking-wide">+ Add Tool</Link>
+        <h2 className="text-2xl font-extrabold text-[#0A2E4D] flex items-center gap-2"><span>{department.icon}</span> {department.name} — Apps</h2>
+        <Link to={`/admin/departments/${id}/tools/new`} className="bg-[#FF8C00] hover:bg-orange-600 text-white text-sm font-bold px-5 py-2.5 rounded-lg shadow-lg shadow-orange-500/20 transition-all active:scale-95 uppercase tracking-wide">+ Add App</Link>
       </div>
 
       <div className="glass-card rounded-xl overflow-hidden">
         <table className="w-full">
           <thead>
             <tr className="border-b border-slate-100">
-              <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Tool</th>
+              <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">App</th>
               <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Status</th>
               <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4 hidden lg:table-cell">Managed By</th>
               <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4 hidden md:table-cell">URL</th>
@@ -76,7 +76,7 @@ export default function AdminToolsList() {
             ))}
           </tbody>
         </table>
-        {(!department.tools || department.tools.length === 0) && <p className="text-slate-400 text-center py-10">No tools yet. Add one above.</p>}
+        {(!department.tools || department.tools.length === 0) && <p className="text-slate-400 text-center py-10">No apps yet. Add one above.</p>}
       </div>
     </div>
   );

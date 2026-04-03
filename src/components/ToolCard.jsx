@@ -79,7 +79,7 @@ export default function ToolCard({ tool }) {
         </div>
       </div>
       <span className="px-5 py-2.5 text-[10px] font-black uppercase tracking-widest bg-[#F4F7FA] text-[#0A2E4D] group-hover:bg-[#FF8C00] group-hover:text-white rounded-lg transition-all shrink-0 flex items-center gap-2">
-        Open Tool
+        Open App
         <span className="material-symbols-outlined text-sm">open_in_new</span>
       </span>
     </a>

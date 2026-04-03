@@ -42,7 +42,7 @@ export default function AdminDashboard() {
           <thead>
             <tr className="border-b border-slate-100">
               <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Department</th>
-              <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Tools</th>
+              <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Apps</th>
               <th className="text-left text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4 hidden md:table-cell">Password</th>
               <th className="text-right text-slate-500 text-xs font-semibold uppercase tracking-wider px-6 py-4">Actions</th>
             </tr>
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-slate-500 text-sm font-medium">{dept.tool_count || 0} tools</td>
+                <td className="px-6 py-4 text-slate-500 text-sm font-medium">{dept.tool_count || 0} apps</td>
                 <td className="px-6 py-4 hidden md:table-cell">
                   {dept.has_password ? (
                     <span className="inline-flex items-center gap-1.5 text-green-600 text-xs font-semibold">
@@ -71,7 +71,7 @@ export default function AdminDashboard() {
                 </td>
                 <td className="px-6 py-4 text-right">
                   <div className="flex items-center justify-end gap-3">
-                    <Link to={`/admin/departments/${dept.id}/tools`} className="text-[#FF8C00] hover:text-orange-600 text-sm font-semibold">Tools</Link>
+                    <Link to={`/admin/departments/${dept.id}/tools`} className="text-[#FF8C00] hover:text-orange-600 text-sm font-semibold">Apps</Link>
                     <Link to={`/admin/departments/${dept.id}/edit`} className="text-slate-500 hover:text-[#0A2E4D] text-sm font-semibold">Edit</Link>
                     <button onClick={() => handleDelete(dept.id, dept.name)} className="text-red-500 hover:text-red-700 text-sm font-semibold">Delete</button>
                   </div>

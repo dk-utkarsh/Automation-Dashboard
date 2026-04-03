@@ -118,7 +118,7 @@ export default function DepartmentPage({ darkMode }) {
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
         <div className={`rounded-xl p-5 animate-fade-up stagger-2 border ${darkMode ? "bg-white/5 border-white/10" : "bg-white border-slate-100"}`}>
-          <p className={`text-[10px] uppercase font-bold tracking-widest ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Total Tools</p>
+          <p className={`text-[10px] uppercase font-bold tracking-widest ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Total Apps</p>
           <p className={`text-3xl font-black mt-1 ${darkMode ? "text-white" : "text-[#0A2E4D]"}`}><AnimatedNumber value={totalTools} /></p>
         </div>
         <div className={`rounded-xl p-5 animate-fade-up stagger-3 border ${darkMode ? "bg-white/5 border-white/10" : "bg-white border-slate-100"}`}>
@@ -151,7 +151,7 @@ export default function DepartmentPage({ darkMode }) {
       {totalTools === 0 && (
         <div className={`text-center py-16 rounded-xl border ${darkMode ? "bg-white/5 border-white/10" : "bg-white border-slate-100"}`}>
           <span className="material-symbols-outlined text-5xl text-slate-300">build</span>
-          <p className="text-slate-500 mt-3 font-medium">No tools in this department yet.</p>
+          <p className="text-slate-500 mt-3 font-medium">No apps in this department yet.</p>
         </div>
       )}
     </div>

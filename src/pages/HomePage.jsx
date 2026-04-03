@@ -50,7 +50,7 @@ export default function HomePage({ darkMode }) {
   const cardItems = departments.map((dept) => ({
     id: dept.id,
     title: `${dept.icon} ${dept.name}`,
-    description: dept.description || `${dept.tool_count || 0} automation tools`,
+    description: dept.description || `${dept.tool_count || 0} automation apps`,
     imageSrc: deptImages[dept.slug] || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop",
     href: null,
     slug: dept.slug,
@@ -76,11 +76,11 @@ export default function HomePage({ darkMode }) {
           <p className={`text-2xl font-black mt-1 ${darkMode ? "text-white" : "text-[#0A2E4D]"}`}><AnimatedNumber value={totalDepts} /></p>
         </div>
         <div className={`rounded-xl px-5 py-4 ${darkMode ? "bg-white/5 border-white/5" : "bg-white border-slate-100"} border`}>
-          <p className={`text-[10px] uppercase tracking-widest font-bold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Total Tools</p>
+          <p className={`text-[10px] uppercase tracking-widest font-bold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Total Apps</p>
           <p className="text-2xl font-black mt-1 text-[#FF8C00]"><AnimatedNumber value={totalTools} /></p>
         </div>
         <div className={`rounded-xl px-5 py-4 ${darkMode ? "bg-white/5 border-white/5" : "bg-white border-slate-100"} border`}>
-          <p className={`text-[10px] uppercase tracking-widest font-bold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Live Tools</p>
+          <p className={`text-[10px] uppercase tracking-widest font-bold ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Live Apps</p>
           <p className="text-2xl font-black mt-1 text-green-500"><AnimatedNumber value={liveTools} /></p>
         </div>
         <div className="rounded-xl px-5 py-4 bg-[#0A2E4D] text-white">

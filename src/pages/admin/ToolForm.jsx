@@ -34,13 +34,13 @@ export default function ToolForm() {
   return (
     <div className="max-w-lg">
       <Link to={`/admin/departments/${departmentId}/tools`} className="text-slate-500 hover:text-[#0A2E4D] text-sm font-medium mb-6 inline-flex items-center gap-1">
-        <span className="material-symbols-outlined text-lg">arrow_back</span> Back to Tools
+        <span className="material-symbols-outlined text-lg">arrow_back</span> Back to Apps
       </Link>
-      <h2 className="text-2xl font-extrabold text-[#0A2E4D] mb-6">{isEdit ? "Edit Tool" : "New Tool"}</h2>
+      <h2 className="text-2xl font-extrabold text-[#0A2E4D] mb-6">{isEdit ? "Edit App" : "New App"}</h2>
       <form onSubmit={handleSubmit} className="space-y-5">
         <div><label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Name *</label><input type="text" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required className={inputClass} placeholder="e.g. Invoice Generator" /></div>
         <div><label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">URL *</label><input type="url" value={form.url} onChange={e => setForm({...form, url: e.target.value})} required className={inputClass} placeholder="https://your-app.vercel.app/" /></div>
-        <div><label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Description</label><textarea value={form.description} onChange={e => setForm({...form, description: e.target.value})} rows={2} className={inputClass + " resize-none"} placeholder="What does this tool do?" /></div>
+        <div><label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Description</label><textarea value={form.description} onChange={e => setForm({...form, description: e.target.value})} rows={2} className={inputClass + " resize-none"} placeholder="What does this app do?" /></div>
         <div className="grid grid-cols-2 gap-4">
           <div><label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Icon</label><input type="text" value={form.icon} onChange={e => setForm({...form, icon: e.target.value})} className={inputClass} /></div>
           <div><label className="block text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1.5">Status</label><select value={form.status} onChange={e => setForm({...form, status: e.target.value})} className={inputClass}><option value="live">Live</option><option value="beta">Beta</option><option value="down">Down</option></select></div>
