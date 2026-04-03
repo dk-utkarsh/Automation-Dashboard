@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Routes, Route, Outlet, Navigate, Link, useLocation, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import { GradientBackground } from "./components/ui/GradientBackground";
+import { LightPullThemeSwitcher } from "./components/ui/LightPullThemeSwitcher";
 import HomePage from "./pages/HomePage";
 import DepartmentPage from "./pages/DepartmentPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -186,13 +187,7 @@ function TopBar({ departments, darkMode, setDarkMode }) {
 
       <div className="flex items-center gap-2">
         <Clock />
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="p-2 text-white/60 hover:bg-white/10 rounded-lg transition-colors"
-          title="Toggle dark mode"
-        >
-          <span className="material-symbols-outlined text-[20px]">{darkMode ? "light_mode" : "dark_mode"}</span>
-        </button>
+        <LightPullThemeSwitcher onToggle={() => setDarkMode(!darkMode)} />
         <Link to="/" className="md:hidden p-2 text-white/60 hover:bg-white/10 rounded-lg transition-colors">
           <span className="material-symbols-outlined text-[20px]">dashboard</span>
         </Link>
@@ -226,6 +221,7 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("darkMode") === "true");
 
   useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode);
     document.body.classList.toggle("dark", darkMode);
     localStorage.setItem("darkMode", darkMode);
   }, [darkMode]);
